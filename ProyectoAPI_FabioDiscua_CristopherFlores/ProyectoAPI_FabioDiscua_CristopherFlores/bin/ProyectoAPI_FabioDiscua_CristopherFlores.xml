@@ -1,0 +1,1993 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProyectoAPI_FabioDiscua_CristopherFlores</name>
+    </assembly>
+    <members>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.#ctor(ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ProyectoAPI_FabioDiscua_CristopherFlores.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.AdministradorController.Get">
+            <summary>
+            Retorna la lista de empleados administrativos
+            </summary>
+            <returns>Una lista de empleados administrativos.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.AdministradorController.Get(System.Int32)">
+            <summary>
+            Retorna un empleado administrativo por id
+            </summary>
+            <param name="id">ID del empleado administrativo a retornar.</param>
+            <returns>Un empleado administrativo específico.</returns>
+            <response code="200">Si el empleado administrativo es encontrado.</response>
+            <response code="404">Si el empleado administrativo no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.AdministradorController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo)">
+            <summary>
+            Crea un nuevo empleado administrativo
+            </summary>
+            <param name="empleadoAdministrativo">El empleado administrativo a crear.</param>
+            <returns>El empleado administrativo creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.AdministradorController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo)">
+            <summary>
+            Actualiza un empleado administrativo existente
+            </summary>
+            <param name="empleadoAdministrativoModificado">El empleado administrativo con los datos actualizados.</param>
+            <param name="id">ID del empleado administrativo a editar.</param>
+            <returns>El empleado administrativo actualizado.</returns>
+            <response code="200">Si el empleado administrativo es actualizado correctamente.</response>
+            <response code="404">Si el empleado administrativo no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.AdministradorController.Delete(System.Int32)">
+            <summary>
+            Elimina un empleado administrativo por id
+            </summary>
+            <param name="id">ID del empleado administrativo a eliminar.</param>
+            <returns>El empleado administrativo eliminado.</returns>
+            <response code="200">Si el empleado administrativo es eliminado correctamente.</response>
+            <response code="404">Si el empleado administrativo no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.GetApartamentosContratos">
+            <summary>
+            Obtener la lista de Apartamentos con contratos activos ordenados por antiguedad
+            </summary>
+            <returns>JSON Apartamentos</returns>
+            <response code="200">Devuelve el apartamento encontrado</response>
+            <response code="404">Si el apartamento no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.Get">
+            <summary>
+            Retorna la lista de apartamentos
+            </summary>
+            <returns>Una lista de apartamentos.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.Get(System.Int32)">
+            <summary>
+            Retorna un apartamento por id
+            </summary>
+            <param name="id">ID del apartamento a retornar.</param>
+            <returns>Un apartamento específico.</returns>
+            <response code="200">Si el apartamento es encontrado.</response>
+            <response code="404">Si el apartamento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento)">
+            <summary>
+            Crea un nuevo apartamento
+            </summary>
+            <param name="apartamento">El apartamento a crear.</param>
+            <returns>El apartamento creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento)">
+            <summary>
+            Actualiza un apartamento existente
+            </summary>
+            <param name="apartamentoModificado">El apartamento con los datos actualizados.</param>
+            <param name="id">ID del apartamento a editar.</param>
+            <returns>El apartamento actualizado.</returns>
+            <response code="200">Si el apartamento es actualizado correctamente.</response>
+            <response code="404">Si el apartamento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ApartamentoController.Delete(System.Int32)">
+            <summary>
+            Elimina un apartamento por id
+            </summary>
+            <param name="id">ID del apartamento a eliminar.</param>
+            <returns>El apartamento eliminado.</returns>
+            <response code="200">Si el apartamento es eliminado correctamente.</response>
+            <response code="404">Si el apartamento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.GetContratoReciente">
+            <summary>
+            Obtener la lista de Arrendatarios ordenados según el contrato mas reciente
+            </summary>
+            <returns>JSON Arrendatarios</returns>
+            <response code="200">Devuelve el arrendatario encontrado</response>
+            <response code="404">Si el arrendatario no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.GetMantenimientos">
+            <summary>
+            Obtener la lista de Arrendatarios el mantenimiento realizado en su apartamento
+            </summary>
+            <returns>JSON Arrendatarios</returns>
+            <response code="200">Devuelve el arrendatario encontrado</response>
+            <response code="404">Si el arrendatario no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.GetEdad">
+            <summary>
+            Obtener la lista de Arrendatarios ordenados por Edad
+            </summary>
+            <returns>JSON Arrendatarios</returns>
+            <response code="200">Devuelve el arrendatario encontrado</response>
+            <response code="404">Si el arrendatario no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.Get">
+            <summary>
+            Retorna la lista de arrendatarios
+            </summary>
+            <returns>Una lista de arrendatarios.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.Get(System.Int32)">
+            <summary>
+            Retorna un arrendatario por id
+            </summary>
+            <param name="id">ID del arrendatario a retornar.</param>
+            <returns>Un arrendatario específico.</returns>
+            <response code="200">Si el arrendatario es encontrado.</response>
+            <response code="404">Si el arrendatario no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendatario)">
+            <summary>
+            Crea un nuevo arrendatario
+            </summary>
+            <param name="arrendatario">El arrendatario a crear.</param>
+            <returns>El arrendatario creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendatario)">
+            <summary>
+            Actualiza un arrendatario existente
+            </summary>
+            <param name="arrendatarioModificado">El arrendatario con los datos actualizados.</param>
+            /// <param name="id">ID del arrendatario a editar.</param>
+            <returns>El arrendatario actualizado.</returns>
+            <response code="200">Si el arrendatario es actualizado correctamente.</response>
+            <response code="404">Si el arrendatario no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendatarioController.Delete(System.Int32)">
+            <summary>
+            Elimina un arrendatario por id
+            </summary>
+            <param name="id">ID del arrendatario a eliminar.</param>
+            <returns>El arrendatario eliminado.</returns>
+            <response code="200">Si el arrendatario es eliminado correctamente.</response>
+            <response code="404">Si el arrendatario no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ATCController.Get">
+            <summary>
+            Retorna la lista de atenciones al cliente
+            </summary>
+            <returns>Una lista de atenciones al cliente.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ATCController.Get(System.Int32)">
+            <summary>
+            Retorna una atención al cliente por id
+            </summary>
+            <param name="id">ID de la atención al cliente a retornar.</param>
+            <returns>Una atención al cliente específica.</returns>
+            <response code="200">Si la atención al cliente es encontrada.</response>
+            <response code="404">Si la atención al cliente no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ATCController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente)">
+            <summary>
+            Crea una nueva atención al cliente
+            </summary>
+            <param name="atencionAlCliente">La atención al cliente a crear.</param>
+            <returns>La atención al cliente creada.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ATCController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente)">
+            <summary>
+            Actualiza una atención al cliente existente
+            </summary>
+            <param name="atencionAlClienteModificado">La atención al cliente con los datos actualizados.</param>
+            /// <param name="id">ID de la atención al cliente a editar.</param>
+            <returns>La atención al cliente actualizada.</returns>
+            <response code="200">Si la atención al cliente es actualizada correctamente.</response>
+            <response code="404">Si la atención al cliente no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ATCController.Delete(System.Int32)">
+            <summary>
+            Elimina una atención al cliente por id
+            </summary>
+            <param name="id">ID de la atención al cliente a eliminar.</param>
+            <returns>La atención al cliente eliminada.</returns>
+            <response code="200">Si la atención al cliente es eliminada correctamente.</response>
+            <response code="404">Si la atención al cliente no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.GetContratosActivos">
+            <summary>
+            Obtener la lista de Contratos Activos
+            </summary>
+            <returns>JSON Contratos</returns>
+            <response code="200">Devuelve el contrato encontrado</response>
+            <response code="404">Si el contrato no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Get">
+            <summary>
+            Retorna la lista de contratos
+            </summary>
+            <returns>Una lista de contratos.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Get(System.Int32)">
+            <summary>
+            Retorna un contrato por id
+            </summary>
+            <param name="id">ID del contrato a retornar.</param>
+            <returns>Un contrato específico.</returns>
+            <response code="200">Si el contrato es encontrado.</response>
+            <response code="404">Si el contrato no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato)">
+            <summary>
+            Crea un nuevo contrato
+            </summary>
+            <param name="contrato">El contrato a crear.</param>
+            <returns>El contrato creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato)">
+            <summary>
+            Actualiza un contrato existente
+            </summary>
+            <param name="contratoModificado">El contrato con los datos actualizados.</param>
+            <param name="id">ID del contrato a editar.</param>
+            <returns>El contrato actualizado.</returns>
+            <response code="200">Si el contrato es actualizado correctamente.</response>
+            <response code="404">Si el contrato no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Delete(System.Int32)">
+            <summary>
+            Elimina un contrato por id
+            </summary>
+            <param name="id">ID del contrato a eliminar.</param>
+            <returns>El contrato eliminado.</returns>
+            <response code="200">Si el contrato es eliminado correctamente.</response>
+            <response code="404">Si el contrato no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.GetEdificiosContratos">
+            <summary>
+            Obtener la lista de edificios con la cantidad de apartamentos y contratos activos
+            </summary>
+            <returns>JSON con los edificios y sus detalles</returns>
+            <response code="200">Devuelve los edificios encontrados</response>
+            <response code="404">Si no se encuentran edificios</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.GetEdificiosPersonas">
+            <summary>
+            Obtener la lista de edificios con arrendadores y arrendatarios
+            </summary>
+            <returns>JSON con los edificios, arrendadores y arrendatarios</returns>
+            <response code="200">Devuelve los edificios encontrados</response>
+            <response code="404">Si no se encuentran edificios</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.Get">
+            <summary>
+            Retorna la lista de Edificios
+            </summary>
+            <returns>Una lista de Edificios.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.Get(System.Int32)">
+            <summary>
+            Retorna un edificio por id
+            </summary>
+            <param name="id">ID del edificio a retornar.</param>
+            <returns>Un edificio específico.</returns>
+            <response code="200">Si el edificio es encontrado.</response>
+            <response code="404">Si el edificio no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio)">
+            <summary>
+            Crea un nuevo edificio
+            </summary>
+            <param name="edificio">El edificio a crear.</param>
+            <returns>El edificio creado.</returns>
+            <response code="200">Si el edificio es creado correctamente.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio)">
+            <summary>
+            Actualiza un edificio existente
+            </summary>
+            <param name="edificioModificado">El edificio con los datos actualizados.</param>
+            <param name="id">ID del edificio a editar.</param>
+            <returns>El edificio actualizado.</returns>
+            <response code="200">Si el edificio es actualizado correctamente.</response>
+            <response code="404">Si el edificio no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EdificioController.Delete(System.Int32)">
+            <summary>
+            Elimina un edificio por id
+            </summary>
+            <param name="id">ID del edificio a eliminar.</param>
+            <returns>El edificio eliminado.</returns>
+            <response code="200">Si el edificio es eliminado correctamente.</response>
+            <response code="404">Si el edificio no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.GetEvaluacionesUbicacion">
+            <summary>
+            Obtener la lista de evaluaciones con detalles del apartamento y edificio
+            </summary>
+            <returns>JSON con las evaluaciones y detalles de ubicación</returns>
+            <response code="200">Devuelve las evaluaciones encontradas</response>
+            <response code="404">Si no se encuentran evaluaciones</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.GetEvaluacionesConArrendador">
+            <summary>
+            Obtener la lista de evaluaciones con detalles del arrendador
+            </summary>
+            <returns>JSON con las evaluaciones y los arrendadores relacionados</returns>
+            <response code="200">Devuelve las evaluaciones encontradas</response>
+            <response code="404">Si no se encuentran evaluaciones</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.Get">
+            <summary>
+            Retorna la lista de evaluaciones
+            </summary>
+            <returns>Una lista de evaluaciones.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.Get(System.Int32)" -->
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion)">
+            <summary>
+            Crea una nueva evaluación
+            </summary>
+            <param name="evaluacion">La evaluación a crear.</param>
+            <returns>La evaluación creada.</returns>
+            <response code="200">Si la evaluación es creada correctamente.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion)">
+            <summary>
+            Actualiza una evaluación existente
+            </summary>
+            <param name="evaluacionModificada">La evaluación con los datos actualizados.</param>
+            <param name="id">ID de la evaluación a editar.</param>
+            <returns>La evaluación actualizada.</returns>
+            <response code="200">Si la evaluación es actualizada correctamente.</response>
+            <response code="404">Si la evaluación no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.EvaluacionesController.Delete(System.Int32)">
+            <summary>
+            Elimina una evaluación por id
+            </summary>
+            <param name="id">ID de la evaluación a eliminar.</param>
+            <returns>La evaluación eliminada.</returns>
+            <response code="200">Si la evaluación es eliminada correctamente.</response>
+            <response code="404">Si la evaluación no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.FacturaController.Get">
+            <summary>
+            Retorna la lista de facturas
+            </summary>
+            <returns>Una lista de facturas.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.FacturaController.Get(System.Int32)">
+            <summary>
+            Retorna una factura por id
+            </summary>
+            <param name="id">ID de la factura a retornar.</param>
+            <returns>Una factura específica.</returns>
+            <response code="200">Si la factura es encontrada.</response>
+            <response code="404">Si la factura no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.FacturaController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura)">
+            <summary>
+            Crea una nueva factura
+            </summary>
+            <param name="factura">La factura a crear.</param>
+            <returns>La factura creada.</returns>
+            <response code="200">Si la factura es creada correctamente.</response>
+            <response code="400">Si el contrato no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.FacturaController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura)">
+            <summary>
+            Actualiza una factura existente
+            </summary>
+            <param name="facturaModificada">La factura con los datos actualizados.</param>
+            /// <param name="id">ID de la factura a editar.</param>
+            <returns>La factura actualizada.</returns>
+            <response code="200">Si la factura es actualizada correctamente.</response>
+            <response code="404">Si la factura no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.FacturaController.Delete(System.Int32)">
+            <summary>
+            Elimina una factura por id
+            </summary>
+            <param name="id">ID de la factura a eliminar.</param>
+            <returns>La factura eliminada.</returns>
+            <response code="200">Si la factura es eliminada correctamente.</response>
+            <response code="404">Si la factura no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.GetGarantesDetallados">
+            <summary>
+            Obtener la lista de Garantes ordenados según el contrato mas reciente
+            </summary>
+            <returns>JSON Garantes</returns>
+            <response code="200">Devuelve el garante encontrado</response>
+            <response code="404">Si el garante no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.Get">
+            <summary>
+            Retorna la lista de garantes
+            </summary>
+            <returns>Una lista de garantes.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.Get(System.Int32)">
+            <summary>
+            Retorna un garante por id
+            </summary>
+            <param name="id">ID del garante a retornar.</param>
+            <returns>Un garante específico.</returns>
+            <response code="200">Si el garante es encontrado.</response>
+            <response code="404">Si el garante no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante)">
+            <summary>
+            Crea un nuevo garante
+            </summary>
+            <param name="garante">El garante a crear.</param>
+            <returns>El garante creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante)">
+            <summary>
+            Actualiza un garante existente
+            </summary>
+            <param name="garanteModificado">El garante con los datos actualizados.</param>
+            <param name="id">ID del garante a editar.</param>
+            <returns>El garante actualizado.</returns>
+            <response code="200">Si el garante es actualizado correctamente.</response>
+            <response code="404">Si el garante no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.GaranteController.Delete(System.Int32)">
+            <summary>
+            Elimina un garante por id
+            </summary>
+            <param name="id">ID del garante a eliminar.</param>
+            <returns>El garante eliminado.</returns>
+            <response code="200">Si el garante es eliminado correctamente.</response>
+            <response code="404">Si el garante no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.GetHistorialMantenimientoCompleto">
+            <summary>
+            Obtener la lista del historial de mantenimiento con detalles del empleado, solicitud, apartamento y edificio
+            </summary>
+            <returns>JSON con el historial de mantenimiento</returns>
+            <response code="200">Devuelve la lista del historial encontrado</response>
+            <response code="404">Si no se encuentra historial</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.Get">
+            <summary>
+            Retorna la lista de historial de mantenimiento
+            </summary>
+            <returns>Una lista de historial de mantenimiento.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.Get(System.Int32)">
+            <summary>
+            Retorna un historial de mantenimiento por id
+            </summary>
+            <param name="id">ID del historial de mantenimiento a retornar.</param>
+            <returns>Un historial de mantenimiento específico.</returns>
+            <response code="200">Si el historial de mantenimiento es encontrado.</response>
+            <response code="404">Si el historial de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento)">
+            <summary>
+            Crea un nuevo historial de mantenimiento
+            </summary>
+            <param name="historial">El historial de mantenimiento a crear.</param>
+            <returns>El historial de mantenimiento creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento)">
+            <summary>
+            Actualiza un historial de mantenimiento existente
+            </summary>
+            <param name="historialModificado">El historial de mantenimiento con los datos actualizados.</param>
+            <param name="id">ID del historial de mantenimiento a eliminar.</param>
+            <returns>El historial de mantenimiento actualizado.</returns>
+            <response code="200">Si el historial de mantenimiento es actualizado correctamente.</response>
+            <response code="404">Si el historial de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.HistorialController.Delete(System.Int32)">
+            <summary>
+            Elimina un historial de mantenimiento por id
+            </summary>
+            <param name="id">ID del historial de mantenimiento a eliminar.</param>
+            <returns>El historial de mantenimiento eliminado.</returns>
+            <response code="200">Si el historial de mantenimiento es eliminado correctamente.</response>
+            <response code="404">Si el historial de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.GetContratoReciente">
+            <summary>
+            Obtener la lista de Arrendadores ordenados según el contrato mas antiguo
+            </summary>
+            <returns>JSON Arrendadores</returns>
+            <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.GetPagosRecientes">
+            <summary>
+            Obtener la lista de Arrendadores ordenados según los pagos mas recientes
+            </summary>
+            <returns>JSON Arrendadores</returns>
+            <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.Get">
+            <summary>
+            Retorna la lista de arrendadores
+            </summary>
+            <returns>Una lista de arrendadores.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.Get(System.Int32)">
+            <summary>
+            Obtener un arrendador por ID
+            </summary>
+            <param name="id">ID del arrendador</param>
+            <returns>JSON con el arrendador encontrado</returns>
+            <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendador)">
+            <summary>
+            Insertar un nuevo arrendador
+            </summary>
+            <param name="arrendador">Objeto arrendador</param>
+            <returns>JSON con el arrendador registrado</returns>
+            /// <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendador)">
+            <summary>
+            Actualizar un arrendador
+            </summary>
+            <param name="arrendadorModificado">Objeto arrendador modificado</param>
+            <param name="id">Id para buscar el arrendador</param>
+            <returns>JSON con el arrendador actualizado</returns>
+            /// <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.Delete(System.Int32)">
+            <summary>
+            Eliminar un arrendador por ID
+            </summary>
+            <param name="id">ID del arrendador</param>
+            <returns>JSON con el arrendador eliminado</returns>
+            <response code="200">Devuelve el arrendador encontrado</response>
+            <response code="404">Si el arrendador no es encontrado</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.MantenimientoController.Get">
+            <summary>
+            Retorna la lista de empleados de mantenimiento
+            </summary>
+            <returns>Una lista de empleados de mantenimiento.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.MantenimientoController.Get(System.Int32)">
+            <summary>
+            Retorna un empleado de mantenimiento por id
+            </summary>
+            <param name="id">ID del empleado de mantenimiento a retornar.</param>
+            <returns>Un empleado de mantenimiento específico.</returns>
+            <response code="200">Si el empleado de mantenimiento es encontrado.</response>
+            <response code="404">Si el empleado de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.MantenimientoController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento)">
+            <summary>
+            Crea un nuevo empleado de mantenimiento
+            </summary>
+            <param name="empleadoMantenimiento">El empleado de mantenimiento a crear.</param>
+            <returns>El empleado de mantenimiento creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.MantenimientoController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento)">
+            <summary>
+            Actualiza un empleado de mantenimiento existente
+            </summary>
+            <param name="mantModificado">El empleado de mantenimiento con los datos actualizados.</param>
+            <param name="id">ID del empleado de mantenimiento a editar.</param>
+            <returns>El empleado de mantenimiento actualizado.</returns>
+            <response code="200">Si el empleado de mantenimiento es actualizado correctamente.</response>
+            <response code="404">Si el empleado de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.MantenimientoController.Delete(System.Int32)">
+            <summary>
+            Elimina un empleado de mantenimiento por id
+            </summary>
+            <param name="id">ID del empleado de mantenimiento a eliminar.</param>
+            <returns>El empleado de mantenimiento eliminado.</returns>
+            <response code="200">Si el empleado de mantenimiento es eliminado correctamente.</response>
+            <response code="404">Si el empleado de mantenimiento no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.GetPagosPendientes">
+            <summary>
+            Obtener la lista de Pagos pendientes ordenados por antiguedad
+            </summary>
+            <returns>JSON Pagos</returns>
+            <response code="200">Devuelve el pago encontrado</response>
+            <response code="404">Si el pago no es encontrado</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Get">
+            <summary>
+            Retorna la lista de pagos
+            </summary>
+            <returns>Una lista de pagos.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Get(System.Int32)">
+            <summary>
+            Retorna un pago por id
+            </summary>
+            <param name="id">ID del pago a retornar.</param>
+            <returns>Un pago específico.</returns>
+            <response code="200">Si el pago es encontrado.</response>
+            <response code="404">Si el pago no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago)">
+            <summary>
+            Crea un nuevo pago
+            </summary>
+            <param name="pago">El pago a crear.</param>
+            <returns>El pago creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago)">
+            <summary>
+            Actualiza un pago existente
+            </summary>
+            <param name="pagoModificado">El pago con los datos actualizados.</param>
+            <param name="id">ID del pago a editar.</param>
+            <returns>El pago actualizado.</returns>
+            <response code="200">Si el pago es actualizado correctamente.</response>
+            <response code="404">Si el pago no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Delete(System.Int32)">
+            <summary>
+            Elimina un pago por id
+            </summary>
+            <param name="id">ID del pago a eliminar.</param>
+            <returns>El pago eliminado.</returns>
+            <response code="200">Si el pago es eliminado correctamente.</response>
+            <response code="404">Si el pago no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.GetQuejasSolicitudes">
+            <summary>
+            Obtener la lista de quejas y solicitudes con detalles del apartamento y arrendatario
+            </summary>
+            <returns>JSON con quejas y solicitudes</returns>
+            <response code="200">Devuelve la lista de quejas y solicitudes encontradas</response>
+            <response code="404">Si no se encuentran registros</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.GetQuejasPendientes">
+            <summary>
+            Obtener la lista de quejas pendientes
+            </summary>
+            <returns>JSON con quejas pendientes</returns>
+            <response code="200">Devuelve la lista de quejas pendientes</response>
+            <response code="404">Si no se encuentran registros</response>
+            
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.Get">
+            <summary>
+            Retorna la lista de quejas y solicitudes
+            </summary>
+            <returns>Una lista de quejas y solicitudes.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.Get(System.Int32)">
+            <summary>
+            Retorna una queja o solicitud por id
+            </summary>
+            <param name="id">ID de la queja o solicitud a retornar.</param>
+            <returns>Una queja o solicitud específica.</returns>
+            <response code="200">Si la queja o solicitud es encontrada.</response>
+            <response code="404">Si la queja o solicitud no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud)">
+            <summary>
+            Crea una nueva queja o solicitud
+            </summary>
+            <param name="quejaSolicitud">La queja o solicitud a crear.</param>
+            <returns>La queja o solicitud creada.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud)">
+            <summary>
+            Actualiza una queja o solicitud existente
+            </summary>
+            <param name="quejaModificada">La queja o solicitud con los datos actualizados.</param>
+            <param name="id">ID de la queja o solicitud a editar.</param>
+            <returns>La queja o solicitud actualizada.</returns>
+            <response code="200">Si la queja o solicitud es actualizada correctamente.</response>
+            <response code="404">Si la queja o solicitud no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Queja_SolicitudController.Delete(System.Int32)">
+            <summary>
+            Elimina una queja o solicitud por id
+            </summary>
+            <param name="id">ID de la queja o solicitud a eliminar.</param>
+            <returns>La queja o solicitud eliminada.</returns>
+            <response code="200">Si la queja o solicitud es eliminada correctamente.</response>
+            <response code="404">Si la queja o solicitud no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.SeguridadController.Get">
+            <summary>
+            Retorna la lista de empleados de seguridad
+            </summary>
+            <returns>Una lista de empleados de seguridad.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.SeguridadController.Get(System.Int32)">
+            <summary>
+            Retorna un empleado de seguridad por id
+            </summary>
+            <param name="id">ID del empleado de seguridad a retornar.</param>
+            <returns>Un empleado de seguridad específico.</returns>
+            <response code="200">Si el empleado de seguridad es encontrado.</response>
+            <response code="404">Si el empleado de seguridad no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.SeguridadController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad)">
+            <summary>
+            Crea un nuevo empleado de seguridad
+            </summary>
+            <param name="empleadoSeguridad">El empleado de seguridad a crear.</param>
+            <returns>El empleado de seguridad creado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.SeguridadController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad)">
+            <summary>
+            Actualiza un empleado de seguridad existente
+            </summary>
+            <param name="empleadoSeguridadModificado">El empleado de seguridad con los datos actualizados.</param>
+            <param name="id">ID del empleado de seguridad a editar.</param>
+            <returns>El empleado de seguridad actualizado.</returns>
+            <response code="200">Si el empleado de seguridad es actualizado correctamente.</response>
+            <response code="404">Si el empleado de seguridad no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.SeguridadController.Delete(System.Int32)">
+            <summary>
+            Elimina un empleado de seguridad por id
+            </summary>
+            <param name="id">ID del empleado de seguridad a eliminar.</param>
+            <returns>El empleado de seguridad eliminado.</returns>
+            <response code="200">Si el empleado de seguridad es eliminado correctamente.</response>
+            <response code="404">Si el empleado de seguridad no es encontrado.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Solicitud_MantenimientoController.Get">
+            <summary>
+            Retorna la lista de solicitudes de mantenimiento
+            </summary>
+            <returns>Una lista de solicitudes de mantenimiento.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Solicitud_MantenimientoController.Get(System.Int32)">
+            <summary>
+            Retorna una solicitud de mantenimiento por id
+            </summary>
+            <param name="id">ID de la solicitud de mantenimiento a retornar.</param>
+            <returns>Una solicitud de mantenimiento específica.</returns>
+            <response code="200">Si la solicitud de mantenimiento es encontrada.</response>
+            <response code="404">Si la solicitud de mantenimiento no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Solicitud_MantenimientoController.Post(ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento)">
+            <summary>
+            Crea una nueva solicitud de mantenimiento
+            </summary>
+            <param name="solicitud">La solicitud de mantenimiento a crear.</param>
+            <returns>La solicitud de mantenimiento creada.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Solicitud_MantenimientoController.Put(System.Int32,ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento)">
+            <summary>
+            Actualiza una solicitud de mantenimiento existente
+            </summary>
+            <param name="solicitudModificada">La solicitud de mantenimiento con los datos actualizados.</param>
+            <param name="id">ID de la solicitud de mantenimiento a editar.</param>
+            <returns>La solicitud de mantenimiento actualizada.</returns>
+            <response code="200">Si la solicitud de mantenimiento es actualizada correctamente.</response>
+            <response code="404">Si la solicitud de mantenimiento no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.Solicitud_MantenimientoController.Delete(System.Int32)">
+            <summary>
+            Elimina una solicitud de mantenimiento por id
+            </summary>
+            <param name="id">ID de la solicitud de mantenimiento a eliminar.</param>
+            <returns>La solicitud de mantenimiento eliminada.</returns>
+            <response code="200">Si la solicitud de mantenimiento es eliminada correctamente.</response>
+            <response code="404">Si la solicitud de mantenimiento no es encontrada.</response>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.#ctor">
+            <summary>
+            Constructor de la clase Apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.id">
+            <summary>
+            Obtiene o establece el ID del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.Direccion">
+            <summary>
+            Obtiene o establece la dirección del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.NumHabitaciones">
+            <summary>
+            Obtiene o establece el número de habitaciones del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.PrecioAlquiler">
+            <summary>
+            Obtiene o establece el precio de alquiler del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.Disponible">
+            <summary>
+            Obtiene o establece la disponibilidad del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.IdArrendador">
+            <summary>
+            Obtiene o establece el ID del arrendador del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.Arrendador">
+            <summary>
+            Obtiene o establece el objeto Arrendador asociado al apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.IdEdificio">
+            <summary>
+            Obtiene o establece el ID del edificio al que pertenece el apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Apartamento.Edificio">
+            <summary>
+            Obtiene o establece el objeto Edificio asociado al apartamento.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendador.#ctor">
+            <summary>
+            Constructor de la clase Arrendador.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendador.numRegistro">
+            <summary>
+            Obtiene o establece el número de registro del arrendador.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendador.direccionResidencia">
+            <summary>
+            Obtiene o establece la dirección de residencia del arrendador.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendatario.#ctor">
+            <summary>
+            Constructor de la clase Arrendatario.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Arrendatario.fechaNacimiento">
+            <summary>
+            Obtiene o establece la fecha de nacimiento del arrendatario.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente.#ctor">
+            <summary>
+            Constructor de la clase AtencionAlCliente.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente.extTelefonica">
+            <summary>
+            Obtiene o establece la extensión telefónica del empleado de atención al cliente.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente.IdiomasDB">
+            <summary>
+            Obtiene o establece la cadena de idiomas del empleado de atención al cliente, almacenada en la base de datos.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente.CalculoSueldo">
+            <summary>
+            Calcula el sueldo del empleado de atención al cliente, incluyendo un incremento del 20%.
+            </summary>
+            <returns>El sueldo calculado.</returns>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.AtencionAlCliente.Idiomas">
+            <summary>
+            Obtiene o establece la lista de idiomas del empleado de atención al cliente.
+            Esta propiedad no se mapea a la base de datos y se utiliza para manipular los idiomas.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.#ctor">
+            <summary>
+            Constructor de la clase Contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.id">
+            <summary>
+            Obtiene o establece el ID del contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.IdApartamento">
+            <summary>
+            Obtiene o establece el ID del apartamento asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.apartamento">
+            <summary>
+            Obtiene o establece el objeto Apartamento asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.IdArrendador">
+            <summary>
+            Obtiene o establece el ID del arrendador asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.arrendador">
+            <summary>
+            Obtiene o establece el objeto Arrendador asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.IdArrendatario">
+            <summary>
+            Obtiene o establece el ID del arrendatario asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.arrendatario">
+            <summary>
+            Obtiene o establece el objeto Arrendatario asociado al contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.fechaInicio">
+            <summary>
+            Obtiene o establece la fecha de inicio del contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.fechaFin">
+            <summary>
+            Obtiene o establece la fecha de fin del contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.cuota">
+            <summary>
+            Obtiene o establece la cuota del contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.estado">
+            <summary>
+            Obtiene o establece el estado del contrato (activo o inactivo).
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.#ctor">
+            <summary>
+            Constructor de la clase DBContextProject. Inicializa la conexión a la base de datos utilizando la cadena de conexión "MyDbConnectionString".
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Arrendador">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Arrendador.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Arrendatario">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Arrendatario.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Contrato">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Contrato.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Empleado">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Empleado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.EmpleadoAdministrativo">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Empleado_Administrativo.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.EmpleadoSeguridad">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Empleado_Seguridad.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.EmpleadoMantenimiento">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Empleado_Mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.AtencionAlCliente">
+            <summary>
+            Obtiene o establece el DbSet para la entidad AtencionAlCliente.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Factura">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Factura.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Garante">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Garante.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Pago">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Persona">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Apartamento">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Edificio">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Evaluacion">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Evaluacion.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.Historial">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Historial_Mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.QuejaSolicitud">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Queja_Solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.DBContextProject.SolicitudMantenimiento">
+            <summary>
+            Obtiene o establece el DbSet para la entidad Solicitud_Mantenimiento.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.#ctor">
+            <summary>
+            Constructor de la clase Edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.id">
+            <summary>
+            Obtiene o establece el ID del edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.Nombre">
+            <summary>
+            Obtiene o establece el nombre del edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.Direccion">
+            <summary>
+            Obtiene o establece la dirección del edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.Capacidad">
+            <summary>
+            Obtiene o establece la capacidad máxima de apartamentos en el edificio.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Edificio.Apartamentos">
+            <summary>
+            Lista de apartamentos en el edificio.
+            </summary>}
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado.#ctor">
+            <summary>
+            Constructor de la clase abstracta Empleado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado.sueldo">
+            <summary>
+            Obtiene o establece el sueldo del empleado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado.fechaContratacion">
+            <summary>
+            Obtiene o establece la fecha de contratación del empleado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado.estado">
+            <summary>
+            Obtiene o establece el estado del empleado (activo o inactivo).
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado.CalculoSueldo">
+            <summary>
+            Calcula el sueldo del empleado. Puede ser sobreescrito en clases derivadas para aplicar cálculos específicos.
+            </summary>
+            <returns>El sueldo calculado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo.#ctor">
+            <summary>
+            Constructor de la clase Empleado_Administrativo.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo.oficina">
+            <summary>
+            Obtiene o establece la oficina del empleado administrativo.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo.puesto">
+            <summary>
+            Obtiene o establece el puesto del empleado administrativo.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Administrativo.CalculoSueldo">
+            <summary>
+            Calcula el sueldo del empleado administrativo, incluyendo un incremento del 40%.
+            </summary>
+            <returns>El sueldo calculado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento.#ctor">
+            <summary>
+            Constructor de la clase Empleado_Mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento.EspecialidadesDB">
+            <summary>
+            Obtiene o establece la cadena de especialidades del empleado de mantenimiento, almacenada en la base de datos.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento.CalculoSueldo">
+            <summary>
+            Calcula el sueldo del empleado de mantenimiento, incluyendo un incremento del 25%.
+            </summary>
+            <returns>El sueldo calculado.</returns>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Mantenimiento.Especialidades">
+            <summary>
+            Obtiene o establece la lista de especialidades del empleado de mantenimiento.
+            Esta propiedad se utiliza para manipular las especialidades.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad.#ctor">
+            <summary>
+            Constructor de la clase Empleado_Seguridad.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad.turno">
+            <summary>
+            Obtiene o establece el turno del empleado de seguridad.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad.armado">
+            <summary>
+            Obtiene o establece si el empleado de seguridad está armado.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Empleado_Seguridad.CalculoSueldo">
+            <summary>
+            Calcula el sueldo del empleado de seguridad, incluyendo un incremento del 25%.
+            </summary>
+            <returns>El sueldo calculado.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.#ctor">
+            <summary>
+            Constructor de la clase Evaluacion.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.id">
+            <summary>
+            Obtiene o establece el ID de la evaluación.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.calificacionApartamento">
+            <summary>
+            Obtiene o establece la calificación del apartamento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.calificacionArrendador">
+            <summary>
+            Obtiene o establece la calificación del arrendador.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.opinion">
+            <summary>
+            Obtiene o establece la opinión del usuario.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.fecha">
+            <summary>
+            Obtiene o establece la fecha de la evaluación.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.IdApartamento">
+            <summary>
+            Obtiene o establece el ID del apartamento evaluado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.Apartamento">
+            <summary>
+            Obtiene o establece el objeto Apartamento asociado a la evaluación.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.IdArrendador">
+            <summary>
+            Obtiene o establece el ID del arrendador evaluado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Evaluacion.arrendador">
+            <summary>
+            Obtiene o establece el objeto Arrendador asociado a la evaluación.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.#ctor">
+            <summary>
+            Constructor de la clase Factura. Inicializa la lista de servicios.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.id">
+            <summary>
+            Obtiene o establece el ID de la factura.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.IdContrato">
+            <summary>
+            Obtiene o establece el ID del contrato asociado a la factura.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.contrato">
+            <summary>
+            Obtiene o establece el objeto Contrato asociado a la factura.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.emision">
+            <summary>
+            Obtiene o establece la fecha de emisión de la factura.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Servicios">
+            <summary>
+            Obtiene o establece la lista de servicios incluidos en la factura.
+            El valor predeterminado es Servicio.Cable_Internet.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.plan">
+            <summary>
+            Obtiene o establece el plan de servicios de la factura.
+            El valor predeterminado es Planes.Basico.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.montoTotal">
+            <summary>
+            Obtiene el monto total de la factura. Se calcula utilizando el método CalcularMontoTotal().
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Servicio">
+            <summary>
+            Enumeración que define los tipos de servicios disponibles.
+            </summary>
+        </member>
+        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Planes">
+            <summary>
+            Enumeración que define los planes de servicios disponibles.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.CalcularMontoTotal">
+            <summary>
+            Calcula el monto total de la factura sumando los precios de los servicios y el plan seleccionado.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.GetPrecioPlan(System.Nullable{ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Planes})">
+            <summary>
+            Obtiene el precio del plan de servicios seleccionado.
+            </summary>
+            <param name="plan">El plan de servicios.</param>
+            <returns>El precio del plan.</returns>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.#ctor">
+            <summary>
+            Constructor de la clase Garante.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.docAval">
+            <summary>
+            Obtiene o establece el documento de aval del garante.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.emisionDoc">
+            <summary>
+            Obtiene o establece la fecha de emisión del documento de aval.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.IdArrendatario">
+            <summary>
+            Obtiene o establece el ID del arrendatario garantizado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.arrendatario">
+            <summary>
+            Obtiene o establece el objeto Arrendatario asociado al garante.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.#ctor">
+            <summary>
+            Constructor de la clase Historial_Mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.id">
+            <summary>
+            Obtiene o establece el ID del historial de mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.IdEmpleado">
+            <summary>
+            Obtiene o establece el ID del empleado de mantenimiento asociado.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.EmpleadoMantenimiento">
+            <summary>
+            Obtiene o establece el objeto Empleado_Mantenimiento asociado al historial.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.IdSol">
+            <summary>
+            Obtiene o establece el ID de la solicitud de mantenimiento asociada.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.SolicitudMantenimiento">
+            <summary>
+            Obtiene o establece el objeto Solicitud_Mantenimiento asociado al historial.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.#ctor">
+            <summary>
+            Constructor de la clase Pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.id">
+            <summary>
+            Obtiene o establece el ID del pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.IdContrato">
+            <summary>
+            Obtiene o establece el ID del contrato asociado al pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.contrato">
+            <summary>
+            Obtiene o establece el contrato asociado al pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.fechaPago">
+            <summary>
+            Obtiene o establece la fecha de pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.Monto">
+            <summary>
+            Obtiene o establece el monto del pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.costoMensual">
+            <summary>
+            Obtiene o establece el costo mensual del pago.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.estado">
+            <summary>
+            Obtiene o establece el estado del pago (activo o inactivo).
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.#ctor">
+            <summary>
+            Constructor de la clase Persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.id">
+            <summary>
+            Obtiene o establece el ID de la persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.dni">
+            <summary>
+            Obtiene o establece el número de documento de identidad (DNI) de la persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.nombres">
+            <summary>
+            Obtiene o establece los nombres de la persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.apellidos">
+            <summary>
+            Obtiene o establece los apellidos de la persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.telefono">
+            <summary>
+            Obtiene o establece el número de teléfono de la persona.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Persona.email">
+            <summary>
+            Obtiene o establece el correo electrónico de la persona.
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.#ctor">
+            <summary>
+            Constructor de la clase Queja_Solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.id">
+            <summary>
+            Obtiene o establece el ID de la queja o solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.IdApartamento">
+            <summary>
+            Obtiene o establece el ID del apartamento asociado a la queja o solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.Apartamento">
+            <summary>
+            Obtiene o establece el objeto Apartamento asociado a la queja o solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.Descripcion">
+            <summary>
+            Obtiene o establece la descripción de la queja o solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Queja_Solicitud.Estado">
+            <summary>
+            Obtiene o establece el estado de la queja o solicitud (resuelta o pendiente).
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.#ctor">
+            <summary>
+            Constructor de la clase Solicitud_Mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.id">
+            <summary>
+            Obtiene o establece el ID de la solicitud de mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.IdApartamento">
+            <summary>
+            Obtiene o establece el ID del apartamento asociado a la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Apartamento">
+            <summary>
+            Obtiene o establece el objeto Apartamento asociado a la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.IdArrendatario">
+            <summary>
+            Obtiene o establece el ID del arrendatario que realizó la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Arrendatario">
+            <summary>
+            Obtiene o establece el objeto Arrendatario asociado a la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Descripcion">
+            <summary>
+            Obtiene o establece la descripción de la solicitud de mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.IdEmpleado">
+            <summary>
+            Obtiene o establece el ID del empleado de mantenimiento asignado a la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Mantenimiento">
+            <summary>
+            Obtiene o establece el objeto Empleado_Mantenimiento asociado a la solicitud.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Costo">
+            <summary>
+            Obtiene o establece el costo del mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.FechaRealizacion">
+            <summary>
+            Obtiene o establece la fecha de realización del mantenimiento.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Estado">
+            <summary>
+            Obtiene o establece el estado de la solicitud de mantenimiento (resuelta o pendiente).
+            </summary>
+        </member>
+    </members>
+</doc>
