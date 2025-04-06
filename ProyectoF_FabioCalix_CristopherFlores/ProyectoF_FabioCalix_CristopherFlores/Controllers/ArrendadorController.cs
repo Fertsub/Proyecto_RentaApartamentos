@@ -13,16 +13,16 @@ using ProyectoF_FabioCalix_CristopherFlores.Models;
 
 namespace ProyectoF_FabioCalix_CristopherFlores.Controllers
 {
-    public class ArrendatarioController : ApiController
+    public class ArrendadorController : ApiController
     {
         [HttpGet]
         public async Task<HttpResponseMessage> Get(DataSourceLoadOptions loadOptions)
         {
-            var apiUrl = "https://localhost:44331/api/Arrendatario";
+            var apiUrl = "https://localhost:44331/api/Arrendador";
 
             var respuestaJson = await GetAsync(apiUrl);
-            List<Arrendatario> listArrendatario = JsonConvert.DeserializeObject<List<Arrendatario>>(respuestaJson);
-            return Request.CreateResponse(DataSourceLoader.Load(listArrendatario, loadOptions));
+            List<Arrendador> listArrendador = JsonConvert.DeserializeObject<List<Arrendador>>(respuestaJson);
+            return Request.CreateResponse(DataSourceLoader.Load(listArrendador, loadOptions));
         }
 
         public static async Task<string> GetAsync(string uri)
@@ -55,7 +55,7 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Controllers
 
             var httpContent = new StringContent(values, System.Text.Encoding.UTF8, "application/json");
 
-            var url = "https://localhost:44331/api/Arrendatario";
+            var url = "https://localhost:44331/api/Arrendador";
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
             using (var client = new HttpClient(handler))
@@ -74,12 +74,12 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Controllers
         {
             var key = Convert.ToInt32(form.Get("key"));
 
-            var apiUrlDelArrt = "https://localhost:44331/api/Arrendatario/" + key;
+            var apiUrlDelArrd = "https://localhost:44331/api/Arrendador/" + key;
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
             using (var client = new HttpClient(handler))
             {
-                var respuestaPelic = await client.DeleteAsync(apiUrlDelArrt);
+                var respuestaArrd = await client.DeleteAsync(apiUrlDelArrd);
             }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -88,23 +88,23 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Controllers
         [HttpPut]
         public async Task<HttpResponseMessage> Put(FormDataCollection form)
         {
-            var key = Convert.ToInt32(form.Get("key")); 
+            var key = Convert.ToInt32(form.Get("key"));
             var values = form.Get("values"); 
 
-            var apiUrlGetArrt = $"https://localhost:44331/api/Arrendatario/{key}";
-            var respuestaArrendatario = await GetAsync(apiUrlGetArrt);
-            Arrendatario arrendatario = JsonConvert.DeserializeObject<Arrendatario>(respuestaArrendatario);
+            var apiUrlGetArrd = $"https://localhost:44331/api/Arrendador/{key}";
+            var respuestaArrendador = await GetAsync(apiUrlGetArrd);
+            Arrendador arrendador = JsonConvert.DeserializeObject<Arrendador>(respuestaArrendador);
 
-            JsonConvert.PopulateObject(values, arrendatario);
+            JsonConvert.PopulateObject(values, arrendador);
 
-            string jsonString = JsonConvert.SerializeObject(arrendatario);
+            string jsonString = JsonConvert.SerializeObject(arrendador);
             var httpContent = new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json");
 
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
             using (var client = new HttpClient(handler))
             {
-                var url = $"https://localhost:44331/api/Arrendatario/{key}";
+                var url = $"https://localhost:44331/api/Arrendador/{key}";
                 var response = await client.PutAsync(url, httpContent);
 
                 var result = response.Content.ReadAsStringAsync().Result;

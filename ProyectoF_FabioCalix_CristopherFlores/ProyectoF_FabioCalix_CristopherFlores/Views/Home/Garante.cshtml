@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Arrendatario";
+    ViewData["Title"] = "Garante";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Arrendatarios</h2>
+<h2>Garante</h2>
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Arrendatario>()
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Garante>()
     .DataSource(ds => ds.WebApi()
-        .Controller("Arrendatario")
+        .Controller("Garante")
         .LoadAction("Get")
         .InsertAction("Post")
         .UpdateAction("Put")
@@ -17,7 +17,11 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.fechaNacimiento);
+        columns.AddFor(m => m.docAval);
+
+        columns.AddFor(m => m.emisionDoc);
+
+        columns.AddFor(m => m.IdArrendatario);
 
         columns.AddFor(m => m.id);
 

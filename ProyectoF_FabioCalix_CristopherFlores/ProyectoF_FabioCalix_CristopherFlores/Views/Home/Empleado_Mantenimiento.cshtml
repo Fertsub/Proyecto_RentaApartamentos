@@ -1,13 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Arrendatario";
+    ViewData["Title"] = "Empleado_Mantenimiento";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Arrendatarios</h2>
+<h2>Empleado_Mantenimiento</h2>
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Arrendatario>()
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Empleado_Mantenimiento>()
     .DataSource(ds => ds.WebApi()
-        .Controller("Arrendatario")
+        .Controller("Empleado_Mantenimiento")
         .LoadAction("Get")
         .InsertAction("Post")
         .UpdateAction("Put")
@@ -17,7 +17,13 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.fechaNacimiento);
+        columns.AddFor(m => m.EspecialidadesDB);
+
+        columns.AddFor(m => m.sueldo);
+
+        columns.AddFor(m => m.fechaContratacion);
+
+        columns.AddFor(m => m.estado);
 
         columns.AddFor(m => m.id);
 
