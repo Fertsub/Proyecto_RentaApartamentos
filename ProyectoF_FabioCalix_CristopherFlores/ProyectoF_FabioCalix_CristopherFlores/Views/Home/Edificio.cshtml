@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Edificio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edificio</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Edificio>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Edificio")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.Nombre);
+
+        columns.AddFor(m => m.Direccion);
+
+        columns.AddFor(m => m.Capacidad);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

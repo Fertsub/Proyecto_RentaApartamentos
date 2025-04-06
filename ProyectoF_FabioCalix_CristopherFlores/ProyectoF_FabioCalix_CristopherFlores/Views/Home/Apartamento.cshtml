@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Apartamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Apartamento</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Apartamento>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Apartamento")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.Direccion);
+
+        columns.AddFor(m => m.NumHabitaciones);
+
+        columns.AddFor(m => m.PrecioAlquiler);
+
+        columns.AddFor(m => m.Disponible);
+
+        columns.AddFor(m => m.IdArrendador);
+
+        columns.AddFor(m => m.IdEdificio);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

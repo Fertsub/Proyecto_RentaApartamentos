@@ -355,6 +355,8 @@
     <Content Include="Views\Home\Arrendador.cshtml" />
     <Content Include="Views\Home\Empleado_Mantenimiento.cshtml" />
     <Content Include="Views\Home\Garante.cshtml" />
+    <Content Include="Views\Home\Apartamento.cshtml" />
+    <Content Include="Views\Home\Edificio.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -368,8 +370,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ApartamentoController.cs" />
     <Compile Include="Controllers\ArrendadorController.cs" />
     <Compile Include="Controllers\ArrendatarioController.cs" />
+    <Compile Include="Controllers\EdificioController.cs" />
     <Compile Include="Controllers\GaranteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Empleado_MantenimientoController.cs" />
