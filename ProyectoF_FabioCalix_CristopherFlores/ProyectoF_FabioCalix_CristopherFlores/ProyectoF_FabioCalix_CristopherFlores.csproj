@@ -357,6 +357,9 @@
     <Content Include="Views\Home\Garante.cshtml" />
     <Content Include="Views\Home\Apartamento.cshtml" />
     <Content Include="Views\Home\Edificio.cshtml" />
+    <Content Include="Views\Home\Solicitud_Mantenimiento.cshtml" />
+    <Content Include="Views\Home\Historial_Mantenimiento.cshtml" />
+    <Content Include="Views\Home\Queja_Solicitud.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -375,9 +378,12 @@
     <Compile Include="Controllers\ArrendatarioController.cs" />
     <Compile Include="Controllers\EdificioController.cs" />
     <Compile Include="Controllers\GaranteController.cs" />
+    <Compile Include="Controllers\Historial_MantenimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Empleado_MantenimientoController.cs" />
+    <Compile Include="Controllers\Queja_SolicitudController.cs" />
     <Compile Include="Controllers\SampleDataController.cs" />
+    <Compile Include="Controllers\Solicitud_MantenimientoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

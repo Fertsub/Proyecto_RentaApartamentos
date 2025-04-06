@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Historial_Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historial de Mantenimiento</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Historial_Mantenimiento>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Historial_Mantenimiento")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.IdEmpleado);
+
+        columns.AddFor(m => m.IdSol);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

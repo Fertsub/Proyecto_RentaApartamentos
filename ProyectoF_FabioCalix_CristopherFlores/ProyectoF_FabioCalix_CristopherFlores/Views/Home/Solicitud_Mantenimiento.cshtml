@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Solicitud_Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitud de Mantenimiento</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Solicitud_Mantenimiento>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Solicitud_Mantenimiento")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.IdApartamento);
+
+        columns.AddFor(m => m.IdArrendatario);
+
+        columns.AddFor(m => m.Descripcion);
+
+        columns.AddFor(m => m.IdEmpleado);
+
+        columns.AddFor(m => m.Costo);
+
+        columns.AddFor(m => m.FechaRealizacion);
+
+        columns.AddFor(m => m.Estado);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
