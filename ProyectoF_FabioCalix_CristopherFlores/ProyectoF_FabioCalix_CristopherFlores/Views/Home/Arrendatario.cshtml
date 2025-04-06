@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Arrendatario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Arrendatario</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Arrendatario>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Arrendatario")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.fechaNacimiento);
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.dni);
+
+        columns.AddFor(m => m.nombres);
+
+        columns.AddFor(m => m.apellidos);
+
+        columns.AddFor(m => m.telefono);
+
+        columns.AddFor(m => m.email);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)
