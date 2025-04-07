@@ -34,14 +34,21 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         public DateTime fechaPago { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el monto del pago.
+        /// Obtiene o establece el ID de la factura asociada al pago.
         /// </summary>
-        public float Monto { get; set; }
+        public virtual Factura Factura { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el costo mensual del pago.
+        /// Obtiene el monto total del pago.
         /// </summary>
-        public float costoMensual { get; set; }
+        public float Monto
+        {
+            get
+            {
+                return Factura?.montoTotal ?? 0;
+            }
+            set{}
+        }
 
         /// <summary>
         /// Obtiene o establece el estado del pago (activo o inactivo).

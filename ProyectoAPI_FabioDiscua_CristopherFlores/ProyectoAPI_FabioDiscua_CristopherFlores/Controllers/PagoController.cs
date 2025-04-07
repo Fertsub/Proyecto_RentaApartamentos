@@ -20,7 +20,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         /// <returns>JSON Pagos</returns>
         /// <response code="200">Devuelve el pago encontrado</response>
         /// <response code="404">Si el pago no es encontrado</response>
-        /// 
         [HttpGet]
         [SwaggerOperation("GetPagosPendientes")]
         [Route("api/GetPagosPendientes")]
@@ -30,7 +29,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                         join contrato in db.Contrato on pago.contrato.id equals contrato.id
                         join arrendatario in db.Arrendatario on contrato.arrendatario.id equals arrendatario.id
                         where pago.estado == false
-                        orderby pago.fechaPago ascending 
+                        orderby pago.fechaPago ascending
                         select new
                         {
                             ID_Pago = pago.id,
@@ -90,13 +89,19 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                 return BadRequest("El pago no puede ser nulo.");
             }
 
-            Contrato contratoExistente = db.Contrato.Find(pago.IdContrato);
-
+            var contratoExistente = db.Contrato.Find(pago.IdContrato);
             if (contratoExistente == null)
             {
                 return BadRequest("Contrato no encontrado.");
             }
 
+            var factura = db.Factura.FirstOrDefault(f => f.IdContrato == pago.IdContrato);
+            if (factura == null)
+            {
+                return BadRequest("No hay factura registrada para este contrato.");
+            }
+
+            pago.Monto = factura.montoTotal;
             pago.contrato = contratoExistente;
 
             db.Pago.Add(pago);
@@ -116,29 +121,32 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         public IHttpActionResult Put(int id, Pago pagoModificado)
         {
             Pago pagoExistente = db.Pago.Find(id);
-
             if (pagoExistente == null)
             {
                 return NotFound();
             }
 
             Contrato contratoExistente = db.Contrato.Find(pagoModificado.IdContrato);
-
             if (contratoExistente == null)
             {
                 return BadRequest("Contrato no encontrado.");
             }
 
+            var factura = db.Factura.FirstOrDefault(f => f.IdContrato == pagoModificado.IdContrato);
+            if (factura == null)
+            {
+                return BadRequest("No hay factura registrada para este contrato.");
+            }
+
+            pagoExistente.Monto = factura.montoTotal;
             pagoExistente.fechaPago = pagoModificado.fechaPago;
-            pagoExistente.Monto = pagoModificado.Monto;
-            pagoExistente.costoMensual = pagoModificado.costoMensual;
             pagoExistente.estado = pagoModificado.estado;
             pagoExistente.IdContrato = pagoModificado.IdContrato;
             pagoExistente.contrato = contratoExistente;
 
             db.Entry(pagoExistente).State = EntityState.Modified;
-
             db.SaveChanges();
+
             return Ok(pagoExistente);
         }
 
@@ -162,4 +170,5 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             return Ok(pago);
         }
     }
+
 }

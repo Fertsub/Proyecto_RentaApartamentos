@@ -1094,7 +1094,6 @@
             <returns>JSON Pagos</returns>
             <response code="200">Devuelve el pago encontrado</response>
             <response code="404">Si el pago no es encontrado</response>
-            
         </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.PagoController.Get">
             <summary>
@@ -1849,14 +1848,14 @@
             Obtiene o establece la fecha de pago.
             </summary>
         </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.Monto">
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.Factura">
             <summary>
-            Obtiene o establece el monto del pago.
+            Obtiene o establece el ID de la factura asociada al pago.
             </summary>
         </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.costoMensual">
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.Monto">
             <summary>
-            Obtiene o establece el costo mensual del pago.
+            Obtiene el monto total del pago.
             </summary>
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.estado">
