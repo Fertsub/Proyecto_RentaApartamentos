@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Pago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pago</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Pago")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.IdContrato);
+
+        columns.AddFor(m => m.fechaPago);
+
+        columns.AddFor(m => m.Monto);
+
+        columns.AddFor(m => m.costoMensual);
+
+        columns.AddFor(m => m.estado);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

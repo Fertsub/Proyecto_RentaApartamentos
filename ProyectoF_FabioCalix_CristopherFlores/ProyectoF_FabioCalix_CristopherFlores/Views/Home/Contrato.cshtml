@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Contrato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contrato</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Contrato>()
+    .DataSource(ds => ds.WebApi()
+        .Controller("Contrato")
+        .LoadAction("Get")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("id")
+    )
+    .RemoteOperations(true)
+    .Columns(columns => {
+
+        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.IdApartamento);
+
+        columns.AddFor(m => m.IdArrendador);
+
+        columns.AddFor(m => m.IdArrendatario);
+
+        columns.AddFor(m => m.fechaInicio);
+
+        columns.AddFor(m => m.fechaFin);
+
+        columns.AddFor(m => m.cuota);
+
+        columns.AddFor(m => m.estado);
+    })
+    .Editing(e => e
+        .AllowAdding(true)
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+)

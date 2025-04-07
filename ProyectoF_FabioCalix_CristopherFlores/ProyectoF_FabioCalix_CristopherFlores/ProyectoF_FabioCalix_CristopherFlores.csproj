@@ -360,6 +360,9 @@
     <Content Include="Views\Home\Solicitud_Mantenimiento.cshtml" />
     <Content Include="Views\Home\Historial_Mantenimiento.cshtml" />
     <Content Include="Views\Home\Queja_Solicitud.cshtml" />
+    <Content Include="Views\Home\Contrato.cshtml" />
+    <Content Include="Views\Home\Factura.cshtml" />
+    <Content Include="Views\Home\Pago.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -376,11 +379,14 @@
     <Compile Include="Controllers\ApartamentoController.cs" />
     <Compile Include="Controllers\ArrendadorController.cs" />
     <Compile Include="Controllers\ArrendatarioController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\EdificioController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\GaranteController.cs" />
     <Compile Include="Controllers\Historial_MantenimientoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Empleado_MantenimientoController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\Queja_SolicitudController.cs" />
     <Compile Include="Controllers\SampleDataController.cs" />
     <Compile Include="Controllers\Solicitud_MantenimientoController.cs" />
