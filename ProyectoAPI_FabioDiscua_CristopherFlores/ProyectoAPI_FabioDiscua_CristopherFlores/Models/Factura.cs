@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using static ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura;
@@ -12,10 +13,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// <summary>
         /// Constructor de la clase Factura. Inicializa la lista de servicios.
         /// </summary>
-        public Factura()
-        {
-            Servicios = new List<Servicio>();
-        }
+        public Factura(){}
 
         /// <summary>
         /// Obtiene o establece el ID de la factura.
@@ -37,12 +35,30 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// </summary>
         public DateTime emision { get; set; }
 
+        [NotMapped]
+        public List<Servicio> Servicios { get; set; } = new List<Servicio>();
+
         /// <summary>
-        /// Obtiene o establece la lista de servicios incluidos en la factura.
-        /// El valor predeterminado es Servicio.Cable_Internet.
+        /// Propiedad usada internamente para almacenar los servicios como una cadena.
         /// </summary>
-        [DefaultValue(Servicio.Cable_Internet)]
-        public List<Servicio> Servicios { get; set; }
+        public string ServiciosStr
+        {
+            get { return string.Join(",", Servicios); }
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Servicios = value
+                        .Split(',')
+                        .Select(s => Enum.TryParse(s, out Servicio servicio) ? servicio : Servicio.Cable_Internet)
+                        .ToList();
+                }
+                else
+                {
+                    Servicios = new List<Servicio>();
+                }
+            }
+        }
 
         /// <summary>
         /// Obtiene o establece el plan de servicios de la factura.
@@ -54,7 +70,16 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// <summary>
         /// Obtiene el monto total de la factura. Se calcula utilizando el método CalcularMontoTotal().
         /// </summary>
-        public float montoTotal { get; private set; }
+        public float montoTotal { get; set; }
+
+        /// <summary>
+        /// Obtiene el monto del alquiler asociado a la factura desde el contrato.
+        /// </summary>
+        public float MontoAlquiler
+        {
+            get => contrato?.apartamento?.PrecioAlquiler ?? 0;
+            private set {}
+        }
 
         /// <summary>
         /// Enumeración que define los tipos de servicios disponibles.
@@ -71,6 +96,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// </summary>
         public enum Planes
         {
+            Ninguno,
             Basico,
             Avanzado,
             Premium
@@ -81,7 +107,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// </summary>
         public void CalcularMontoTotal()
         {
-            montoTotal = 0;
+            montoTotal = MontoAlquiler;
 
             foreach (Servicio servicio in Servicios)
             {
@@ -107,13 +133,11 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// <returns>El precio del plan.</returns>
         private float GetPrecioPlan(Planes? plan)
         {
-            if (plan == null)
-            {
-                return 0;
-            }
-
             switch (plan)
             {
+                case Planes.Ninguno:
+                case null:
+                    return 0;
                 case Planes.Basico:
                     return 600;
                 case Planes.Avanzado:

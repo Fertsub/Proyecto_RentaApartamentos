@@ -1429,7 +1429,7 @@
             Obtiene o establece la fecha de fin del contrato.
             </summary>
         </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.cuota">
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.Alquiler">
             <summary>
             Obtiene o establece la cuota del contrato.
             </summary>
@@ -1729,10 +1729,9 @@
             Obtiene o establece la fecha de emisión de la factura.
             </summary>
         </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Servicios">
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.ServiciosStr">
             <summary>
-            Obtiene o establece la lista de servicios incluidos en la factura.
-            El valor predeterminado es Servicio.Cable_Internet.
+            Propiedad usada internamente para almacenar los servicios como una cadena.
             </summary>
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.plan">
@@ -1744,6 +1743,11 @@
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.montoTotal">
             <summary>
             Obtiene el monto total de la factura. Se calcula utilizando el método CalcularMontoTotal().
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.MontoAlquiler">
+            <summary>
+            Obtiene el monto del alquiler asociado a la factura desde el contrato.
             </summary>
         </member>
         <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Servicio">

@@ -59,7 +59,9 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                 return BadRequest("La factura no puede ser nula.");
             }
 
-            Contrato contratoExistente = db.Contrato.Find(factura.IdContrato);
+            Contrato contratoExistente = db.Contrato
+                .Include(c => c.apartamento)
+                .FirstOrDefault(c => c.id == factura.IdContrato);
 
             if (contratoExistente == null)
             {
@@ -86,13 +88,13 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         public IHttpActionResult Put(int id, Factura facturaModificada)
         {
             Factura facturaExistente = db.Factura.Find(id);
-
             if (facturaExistente == null)
             {
                 return NotFound();
             }
-
-            Contrato contratoExistente = db.Contrato.Find(facturaModificada.IdContrato);
+            Contrato contratoExistente = db.Contrato
+                .Include(c => c.apartamento)
+                .FirstOrDefault(c => c.id == facturaModificada.IdContrato);
 
             if (contratoExistente == null)
             {
@@ -100,15 +102,15 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             }
 
             facturaExistente.IdContrato = facturaModificada.IdContrato;
-            facturaExistente.contrato = contratoExistente;
             facturaExistente.emision = facturaModificada.emision;
-            facturaExistente.Servicios = facturaModificada.Servicios;
             facturaExistente.plan = facturaModificada.plan;
+            facturaExistente.ServiciosStr = facturaModificada.ServiciosStr;
+            facturaExistente.contrato = contratoExistente; 
             facturaExistente.CalcularMontoTotal();
 
             db.Entry(facturaExistente).State = EntityState.Modified;
-
             db.SaveChanges();
+
             return Ok(facturaExistente);
         }
 

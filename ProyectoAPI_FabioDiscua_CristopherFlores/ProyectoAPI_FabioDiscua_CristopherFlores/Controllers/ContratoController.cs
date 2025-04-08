@@ -40,7 +40,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                             contratoId = contrato.id,
                             contrato.fechaInicio,
                             contrato.fechaFin,
-                            contrato.cuota,
+                            Alquiler = apartamento.PrecioAlquiler,
                             apartamento = apartamento.Direccion,
                             arrendador = arrendador.nombres + " " + arrendador.apellidos,
                             arrendatario = arrendatario.nombres + " " + arrendatario.apellidos
@@ -141,17 +141,18 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
 
             contratoExistente.fechaInicio = contratoModificado.fechaInicio;
             contratoExistente.fechaFin = contratoModificado.fechaFin;
-            contratoExistente.cuota = contratoModificado.cuota;
             contratoExistente.estado = contratoModificado.estado;
             contratoExistente.IdApartamento = contratoModificado.IdApartamento;
-            contratoExistente.apartamento = apartamentoExistente;
             contratoExistente.IdArrendador = contratoModificado.IdArrendador;
-            contratoExistente.arrendador = arrendadorExistente;
             contratoExistente.IdArrendatario = contratoModificado.IdArrendatario;
+            contratoExistente.apartamento = apartamentoExistente;
+            contratoExistente.arrendador = arrendadorExistente;
             contratoExistente.arrendatario = arrendatarioExistente;
+            contratoExistente.Alquiler = apartamentoExistente.PrecioAlquiler;
 
             db.Entry(contratoExistente).State = EntityState.Modified;
             db.SaveChanges();
+
             return Ok(contratoExistente);
         }
 
