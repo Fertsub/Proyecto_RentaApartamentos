@@ -89,19 +89,20 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                 return BadRequest("El pago no puede ser nulo.");
             }
 
-            var contratoExistente = db.Contrato.Find(pago.IdContrato);
+            Contrato contratoExistente = db.Contrato.Find(pago.IdContrato);
             if (contratoExistente == null)
             {
                 return BadRequest("Contrato no encontrado.");
             }
 
-            var factura = db.Factura.FirstOrDefault(f => f.IdContrato == pago.IdContrato);
+            Factura factura = db.Factura.FirstOrDefault(f => f.IdContrato == pago.IdContrato);
             if (factura == null)
             {
                 return BadRequest("No hay factura registrada para este contrato.");
             }
 
-            pago.Monto = factura.montoTotal;
+            pago.Factura = factura;
+            pago.CalcularMonto();
             pago.contrato = contratoExistente;
 
             db.Pago.Add(pago);
@@ -132,13 +133,14 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                 return BadRequest("Contrato no encontrado.");
             }
 
-            var factura = db.Factura.FirstOrDefault(f => f.IdContrato == pagoModificado.IdContrato);
+            Factura factura = db.Factura.FirstOrDefault(f => f.IdContrato == pagoModificado.IdContrato);
             if (factura == null)
             {
                 return BadRequest("No hay factura registrada para este contrato.");
             }
 
-            pagoExistente.Monto = factura.montoTotal;
+            pagoExistente.Factura = factura;
+            pagoExistente.CalcularMonto(); 
             pagoExistente.fechaPago = pagoModificado.fechaPago;
             pagoExistente.estado = pagoModificado.estado;
             pagoExistente.IdContrato = pagoModificado.IdContrato;
@@ -146,7 +148,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
 
             db.Entry(pagoExistente).State = EntityState.Modified;
             db.SaveChanges();
-
             return Ok(pagoExistente);
         }
 

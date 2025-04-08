@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Http.Routing.Constraints;
@@ -39,15 +40,16 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         public virtual Factura Factura { get; set; }
 
         /// <summary>
-        /// Obtiene el monto total del pago.
+        /// Monto total del pago (igual al monto de la factura).
         /// </summary>
-        public float Monto
+        public float Monto { get; set; }
+
+        /// <summary>
+        /// Calcula el monto del pago a partir de la factura asociada.
+        /// </summary>
+        public void CalcularMonto()
         {
-            get
-            {
-                return Factura?.montoTotal ?? 0;
-            }
-            set{}
+            Monto = Factura?.montoTotal ?? 0;
         }
 
         /// <summary>

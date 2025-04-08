@@ -1859,7 +1859,12 @@
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.Monto">
             <summary>
-            Obtiene el monto total del pago.
+            Monto total del pago (igual al monto de la factura).
+            </summary>
+        </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.CalcularMonto">
+            <summary>
+            Calcula el monto del pago a partir de la factura asociada.
             </summary>
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.estado">
