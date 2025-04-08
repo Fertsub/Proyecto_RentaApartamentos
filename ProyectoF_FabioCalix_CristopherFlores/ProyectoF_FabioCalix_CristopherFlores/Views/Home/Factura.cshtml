@@ -23,7 +23,11 @@
 
         columns.AddFor(m => m.emision);
 
+        columns.AddFor(m => m.ServiciosStr);
+
         columns.AddFor(m => m.montoTotal);
+
+        columns.AddFor(m => m.MontoAlquiler);
     })
     .Editing(e => e
         .AllowAdding(true)

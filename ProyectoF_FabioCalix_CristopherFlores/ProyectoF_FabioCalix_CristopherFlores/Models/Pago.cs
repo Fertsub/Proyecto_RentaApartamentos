@@ -33,14 +33,22 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Models
         public DateTime fechaPago { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el monto del pago.
+        /// Obtiene o establece el ID de la factura asociada al pago.
+        /// </summary>
+        public virtual Factura Factura { get; set; }
+
+        /// <summary>
+        /// Monto total del pago (igual al monto de la factura).
         /// </summary>
         public float Monto { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el costo mensual del pago.
+        /// Calcula el monto del pago a partir de la factura asociada.
         /// </summary>
-        public float costoMensual { get; set; }
+        public void CalcularMonto()
+        {
+            Monto = Factura?.montoTotal ?? 0;
+        }
 
         /// <summary>
         /// Obtiene o establece el estado del pago (activo o inactivo).
