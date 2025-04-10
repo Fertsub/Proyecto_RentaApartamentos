@@ -60,7 +60,17 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Models
         /// <summary>
         /// Obtiene o establece la cuota del contrato.
         /// </summary>
-        public float cuota { get; set; }
+        public float Alquiler
+        {
+            get => apartamento?.PrecioAlquiler ?? 0;
+            set
+            {
+                if (apartamento != null)
+                {
+                    apartamento.PrecioAlquiler = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Obtiene o establece el estado del contrato (activo o inactivo).
