@@ -8,11 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ProyectoF_FabioCalix_CristopherFlores</title>
+    <title>Gestion de Apartamentos</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
     @* Uncomment to use the HtmlEditor control *@
-    @* <script src="https://unpkg.com/devextreme-quill@24_1/dist/dx-quill.min.js"></script> *@
+    @* <script src="https://unpkg.com/devextreme-quill@23_1/dist/dx-quill.min.js"></script> *@
 
     @Styles.Render("~/Content/bundle")
     @Styles.Render("~/Content/DevExtremeBundle")
@@ -20,11 +20,11 @@
     @Scripts.Render("~/Scripts/DevExtremeBundle")
 </head>
 
-<body style="padding-top: 3.5rem;">
+<body style="padding-top: 5rem;">
 
     <nav class="navbar navbar-dark bg-dark fixed-top navbar-expand-md">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">ProyectoF_FabioCalix_CristopherFlores</a>
+            <a class="navbar-brand" href="/">GESTION DE APARTAMENTOS</a>
 
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="navbar-toggler-icon"></span>
@@ -32,15 +32,23 @@
 
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Apartamento", "Home")" class="nav-link">Apartamentos</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Arrendador", "Home")" class="nav-link">Arrendadores</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Arrendatario", "Home")" class="nav-link">Arrendatarios</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Edificio", "Home")" class="nav-link">Edificios</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Empleado_Mantenimiento", "Home")" class="nav-link">Empleados de Mantenimiento</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Factura", "Home")" class="nav-link">Facturas</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Garante", "Home")" class="nav-link">Garantes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Historial_Mantenimiento", "Home")" class="nav-link">Historial de Mantenimiento</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Pago", "Home")" class="nav-link">Pagos</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Queja_Solicitud", "Home")" class="nav-link">Quejas y Solicitudes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Solicitud_Mantenimiento", "Home")" class="nav-link">Solicitudes de Mantenimiento</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <main class="container" style="margin-top: 1.5rem;">
+    <main class="container">
         @RenderBody()
     </main>
 </body>
