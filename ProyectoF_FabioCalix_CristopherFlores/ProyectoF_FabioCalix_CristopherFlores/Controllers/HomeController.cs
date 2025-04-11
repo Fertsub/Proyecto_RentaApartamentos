@@ -6,6 +6,11 @@ using System.Web.Mvc;
 
 namespace ProyectoF_FabioCalix_CristopherFlores.Controllers {
     public class HomeController : Controller {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Apartamento()
         {
             return View();

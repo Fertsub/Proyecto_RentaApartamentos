@@ -15,6 +15,7 @@
     <DevExtremeUseLayout>True</DevExtremeUseLayout>
     <DevExtremeLayoutPage>~/Views/Shared/_Layout.cshtml</DevExtremeLayoutPage>
     <DevExtremeSelectedDataContextName />
+    <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
