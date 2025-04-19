@@ -15,20 +15,33 @@
         .Key("id")
     )
     .RemoteOperations(true)
+    .GroupPanel(gp => gp.Visible(true))
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(h => h.Visible(true))
+    .SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true))
     .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+        columns.AddFor(m => m.id)
+        .AllowEditing(false)
+        .Visible(false);
 
-        columns.AddFor(m => m.IdApartamento);
+        columns.Add().Caption("Dirección Apartamento")
+            .CalculateCellValue(@<text>function(data) {
+                return data.Apartamento?.Direccion || "";
+            }</text>);
 
-        columns.AddFor(m => m.Descripcion);
+        columns.AddFor(m => m.Descripcion).AllowEditing(false);
 
-        columns.AddFor(m => m.Estado);
-    })
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
+        columns.AddFor(m => m.Estado)
+        .Caption("Estado")
+        .CellTemplate(
+            new JS(@"function(container, options) {
+                var text = options.value ? 'Revisado' : 'Pendiente';
+                container.text(text);
+            }")
+        );
+    }).Editing(e => e
+    .AllowUpdating(true)
+    .AllowDeleting(true)
     )
 )

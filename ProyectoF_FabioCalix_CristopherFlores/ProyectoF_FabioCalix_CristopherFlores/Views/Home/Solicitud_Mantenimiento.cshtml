@@ -1,13 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Solicitud_Mantenimiento";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Solicitud de Mantenimiento</h2>
-
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Solicitud_Mantenimiento>()
+﻿@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
     .DataSource(ds => ds.WebApi()
-        .Controller("Solicitud_Mantenimiento")
+        .Controller("Pago")
         .LoadAction("Get")
         .InsertAction("Post")
         .UpdateAction("Put")
@@ -17,21 +10,29 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+        columns.AddFor(m => m.id).AllowEditing(false);
 
-        columns.AddFor(m => m.IdApartamento);
+        columns.Add()
+            .Caption("Arrendatario")
+            .CellTemplate(@<text>
+                <span><%- data.contrato?.arrendatario?.nombres %> <%- data.contrato?.arrendatario?.apellidos %></span>
+            </text>);
 
-        columns.AddFor(m => m.IdArrendatario);
+        columns.AddFor(m => m.fechaPago)
+            .Caption("Fecha de Pago")
+            .DataType(GridColumnDataType.Date);
 
-        columns.AddFor(m => m.Descripcion);
+        columns.AddFor(m => m.Monto)
+            .Caption("Monto");
 
-        columns.AddFor(m => m.IdEmpleado);
-
-        columns.AddFor(m => m.Costo);
-
-        columns.AddFor(m => m.FechaRealizacion);
-
-        columns.AddFor(m => m.Estado);
+        columns.AddFor(m => m.estado)
+            .Caption("Estado")
+            .CellTemplate(
+                new JS(@"function(container, options) {
+                    var text = options.value ? 'Pendiente' : 'En Proceso';
+                    container.text(text);
+                }")
+            );
     })
     .Editing(e => e
         .Mode(GridEditMode.Popup)

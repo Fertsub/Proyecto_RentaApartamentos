@@ -17,16 +17,56 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+        columns.AddFor(m => m.id).Caption("ID").AllowEditing(false);
 
-        columns.AddFor(m => m.IdContrato);
+        columns.AddFor(m => m.IdContrato)
+            .Lookup(lookup => lookup
+            .DataSource(d => d.WebApi()
+                .Controller("Contrato")
+                .LoadAction("Get")
+                .Key("id"))
+            .DisplayExpr("arrendatario.nombres")
+            .ValueExpr("id")
+        )
+        .Caption("Arrendatario");
 
-        columns.AddFor(m => m.fechaPago);
+        columns.AddFor(m => m.fechaPago)
+            .Caption("Fecha de Pago")
+            .DataType(GridColumnDataType.Date);
 
-        columns.AddFor(m => m.Monto);
+        columns.AddFor(m => m.Monto)
+            .Caption("Monto")
+            .Format(Format.Currency)
+            .AllowEditing(false);
 
-        columns.AddFor(m => m.estado);
+        columns.AddFor(m => m.estado)
+            .Caption("Estado")
+            .CellTemplate(
+                new JS(@"function(container, options) {  
+                    var text = options.value === true ? 'Pendiente' : 'Pagado';  
+                    container.text(text);  
+                }")
+            );
     })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .ShowBorders(true)
+    .MasterDetail(md => md
+        .Enabled(true)
+        .Template(@<text>
+            <div class="p-2">
+                <p><strong>Detalles del Contrato:</strong></p>
+                <div>
+                    ID: <strong><%- data.contrato.id %></strong><br />
+                    Fecha de Inicio: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaInicio), 'dd/MM/yyyy') %></strong><br />
+                    Fecha Fin: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaFin), 'dd/MM/yyyy') %></strong><br />
+                    Arrendatario: <strong><%- data.contrato.arrendatario.nombres %> <%- data.contrato.arrendatario.apellidos %></strong><br />
+                    Apartamento: <strong><%- data.contrato.apartamento.numero %> - Direccion <%- data.contrato.apartamento.Direccion %></strong>
+                </div>
+            </div>
+        </text>)
+    )
     .Editing(e => e
         .Mode(GridEditMode.Popup)
         .AllowAdding(true)

@@ -14,26 +14,49 @@
         .DeleteAction("Delete")
         .Key("id")
     )
-    .RemoteOperations(true)
+    .RemoteOperations(false)
+    .ShowBorders(true)
+    .GroupPanel(gp => gp.Visible(true))
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(h => h.Visible(true))
+    .SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true))
     .Columns(columns => {
 
-        columns.AddFor(m => m.docAval);
+        columns.AddFor(m => m.id).Caption("ID").AllowEditing(false);
 
-        columns.AddFor(m => m.emisionDoc);
+        columns.AddFor(m => m.dni)
+            .Caption("DNI");
 
-        columns.AddFor(m => m.IdArrendatario);
+        columns.AddFor(m => m.nombres)
+            .Caption("Nombres");
 
-        columns.AddFor(m => m.id);
+        columns.AddFor(m => m.apellidos)
+            .Caption("Apellidos");
 
-        columns.AddFor(m => m.dni);
+        columns.AddFor(m => m.telefono)
+            .Caption("Teléfono");
 
-        columns.AddFor(m => m.nombres);
+        columns.AddFor(m => m.email)
+            .Caption("Correo Electrónico");
 
-        columns.AddFor(m => m.apellidos);
+        columns.AddFor(m => m.docAval)
+            .Caption("Tipo de Documento de Aval")
+            .Lookup(lookup => lookup
+                .DataSource(new[] {
+                    new { ID = "Boleta de Pago", Name = "Boleta de Pago" },
+                    new { ID = "Escritura Pública", Name = "Escritura Pública" },
+                    new { ID = "Constancia de Ingresos", Name = "Constancia de Ingresos" },
+                    new { ID = "Recibo de Servicios", Name = "Recibo de Servicios" },
+                    new { ID = "Otros", Name = "Otros" }
+                })
+                .ValueExpr("ID")
+                .DisplayExpr("Name")
+            );
 
-        columns.AddFor(m => m.telefono);
-
-        columns.AddFor(m => m.email);
+        columns.AddFor(m => m.emisionDoc)
+            .Caption("Fecha de Emisión")
+            .DataType(GridColumnDataType.Date);
+        
     })
     .Editing(e => e
         .Mode(GridEditMode.Popup)

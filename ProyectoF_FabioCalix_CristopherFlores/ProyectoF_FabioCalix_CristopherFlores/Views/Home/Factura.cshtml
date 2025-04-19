@@ -16,19 +16,39 @@
     )
     .RemoteOperations(true)
     .Columns(columns => {
-
         columns.AddFor(m => m.id);
 
-        columns.AddFor(m => m.IdContrato);
+        columns.AddFor(m => m.IdContrato)
+            .Lookup(lookup => lookup
+            .DataSource(d => d.WebApi()
+                .Controller("Contrato")
+                .LoadAction("Get")
+                .Key("id"))
+            .DisplayExpr("arrendatario.nombres")
+            .ValueExpr("id")
+        )
+        .Caption("Arrendatario");
 
-        columns.AddFor(m => m.emision);
+        columns.AddFor(m => m.emision)
+            .Format("date");
 
-        columns.AddFor(m => m.ServiciosStr);
+        columns.AddFor(m => m.ServiciosStr).Caption("Servicios");
 
-        columns.AddFor(m => m.montoTotal);
+        columns.AddFor(m => m.montoTotal)
+            .Format("currency")
+            .HeaderFilter(f => f.GroupInterval(1000));
 
-        columns.AddFor(m => m.MontoAlquiler);
+        columns.AddFor(m => m.MontoAlquiler)
+            .Format("currency")
+            .HeaderFilter(f => f.GroupInterval(1000));
     })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Width("100%")
+    .Height(600)
+    .ShowBorders(true)
     .Editing(e => e
         .Mode(GridEditMode.Popup)
         .AllowAdding(true)

@@ -690,6 +690,12 @@
             <response code="404">Si el contrato no es encontrado</response>
             
         </member>
+        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.GetContratosLookup">
+            <summary>
+            Retorna la lista de contratos (uso exclusivo del FronEnd)   
+            </summary>
+            <returns>Una lista de contratos.</returns>
+        </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Get">
             <summary>
             Retorna la lista de contratos

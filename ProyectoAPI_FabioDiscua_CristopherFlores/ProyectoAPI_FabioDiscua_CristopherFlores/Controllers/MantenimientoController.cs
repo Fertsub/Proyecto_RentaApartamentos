@@ -18,6 +18,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         /// Retorna la lista de empleados de mantenimiento
         /// </summary>
         /// <returns>Una lista de empleados de mantenimiento.</returns>
+        [HttpGet]
         public IEnumerable<Empleado_Mantenimiento> Get()
         {
             return db.EmpleadoMantenimiento;
