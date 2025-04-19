@@ -3,7 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback } from 'react';
 import { View } from 'react-native';
 import AppNavigator from './navigation/AppNav';
-import React from "react";
+import React from 'react';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,12 +19,10 @@ export default function App(): JSX.Element | null {
     }
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
 
   return (
-    <View onLayout={onLayoutRootView} style={{ flex: 1 }}>
+    <View className="flex-1" onLayout={onLayoutRootView}>
       <AppNavigator />
     </View>
   );

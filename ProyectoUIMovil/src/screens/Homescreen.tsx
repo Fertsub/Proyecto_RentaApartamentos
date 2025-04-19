@@ -1,72 +1,89 @@
 // src/screens/HomeScreen.tsx
-import React from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
-import { Link } from 'expo-router'; // Cambiamos next/link por expo-router
-import { FileText, User, Wrench } from 'lucide-react-native';
+import React from "react";
+import { View, Text, Pressable, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { FileText, User, Wrench } from "lucide-react-native";
+import type { RootStackParamList } from "../navigation/AppNav";
 
 export default function HomeScreen() {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <View className="flex-1 bg-gray-50">
       {/* Header */}
-      <View className="sticky top-0 z-10 bg-white border-b border-gray-200">
-        <View className="container flex flex-row items-center justify-between h-16 px-4 mx-auto">
-          <Text className="text-xl font-bold">Portal del Inquilino</Text>
-          <Link href="/profile" asChild>
-            <Pressable className="p-2">
-              <User className="w-6 h-6" />
-              <Text className="sr-only">Perfil</Text>
-            </Pressable>
-          </Link>
+      <View className="bg-white border-b border-gray-200 px-4 py-3">
+        <View className="flex-row justify-between items-center">
+          <Text className="text-xl font-bold text-gray-900">
+            Portal del Inquilino
+          </Text>
+          <Pressable
+            onPress={() => navigation.navigate("Profile")}
+            className="p-2"
+            accessibilityLabel="Ir a perfil"
+          >
+            <User className="w-6 h-6 text-gray-700" />
+          </Pressable>
         </View>
       </View>
 
       {/* Main Content */}
-      <ScrollView className="flex-1 px-4 py-8">
-        <View className="gap-4 md:gap-6 md:flex-row md:flex-wrap">
-          {/* Quejas Card */}
-          <Link href="/complaints" asChild>
-            <Pressable className="flex-row items-center p-4 bg-white rounded-lg shadow-sm shadow-black/5 mb-4 active:shadow-md">
-              <View className="items-center justify-center w-12 h-12 bg-red-100 rounded-full mr-4">
-                <FileText className="w-6 h-6 text-red-600" />
-              </View>
-              <View className="flex-1">
-                <Text className="text-lg font-medium">Quejas</Text>
-                <Text className="text-sm text-gray-500">
-                  Enviar una queja al administrador
-                </Text>
-              </View>
-            </Pressable>
-          </Link>
+      <ScrollView contentContainerStyle={{ padding: 16 }}>
+        <View className="gap-4">
+          {/* Card: Quejas */}
+          <Pressable
+            onPress={() => navigation.navigate("Complaints")}
+            className="flex-row items-center p-4 bg-white rounded-2xl shadow-sm active:shadow-md"
+          >
+            <View className="w-12 h-12 rounded-full bg-red-100 items-center justify-center mr-4">
+              <FileText className="w-6 h-6 text-red-600" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-lg font-semibold text-gray-900">
+                Quejas
+              </Text>
+              <Text className="text-sm text-gray-500">
+                Enviar una queja al administrador
+              </Text>
+            </View>
+          </Pressable>
 
-          {/* Mantenimiento Card */}
-          <Link href="/maintenance" asChild>
-            <Pressable className="flex-row items-center p-4 bg-white rounded-lg shadow-sm shadow-black/5 mb-4 active:shadow-md">
-              <View className="items-center justify-center w-12 h-12 bg-blue-100 rounded-full mr-4">
-                <Wrench className="w-6 h-6 text-blue-600" />
-              </View>
-              <View className="flex-1">
-                <Text className="text-lg font-medium">Mantenimiento</Text>
-                <Text className="text-sm text-gray-500">
-                  Solicitar servicio de mantenimiento
-                </Text>
-              </View>
-            </Pressable>
-          </Link>
+          {/* Card: Mantenimiento */}
+          <Pressable
+            onPress={() => console.log("Mantenimiento")}
+            className="flex-row items-center p-4 bg-white rounded-2xl shadow-sm active:shadow-md"
+          >
+            <View className="w-12 h-12 rounded-full bg-blue-100 items-center justify-center mr-4">
+              <Wrench className="w-6 h-6 text-blue-600" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-lg font-semibold text-gray-900">
+                Mantenimiento
+              </Text>
+              <Text className="text-sm text-gray-500">
+                Solicitar servicio de mantenimiento
+              </Text>
+            </View>
+          </Pressable>
 
-          {/* Perfil Card */}
-          <Link href="/profile" asChild>
-            <Pressable className="flex-row items-center p-4 bg-white rounded-lg shadow-sm shadow-black/5 mb-4 active:shadow-md">
-              <View className="items-center justify-center w-12 h-12 bg-green-100 rounded-full mr-4">
-                <User className="w-6 h-6 text-green-600" />
-              </View>
-              <View className="flex-1">
-                <Text className="text-lg font-medium">Mi Información</Text>
-                <Text className="text-sm text-gray-500">
-                  Ver y editar información personal
-                </Text>
-              </View>
-            </Pressable>
-          </Link>
+          {/* Card: Perfil */}
+          <Pressable
+            onPress={() => navigation.navigate("Profile")}
+            className="flex-row items-center p-4 bg-white rounded-2xl shadow-sm active:shadow-md"
+          >
+            <View className="w-12 h-12 rounded-full bg-green-100 items-center justify-center mr-4">
+              <User className="w-6 h-6 text-green-600" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-lg font-semibold text-gray-900">
+                Mi Información
+              </Text>
+              <Text className="text-sm text-gray-500">
+                Ver y editar información personal
+              </Text>
+            </View>
+          </Pressable>
         </View>
       </ScrollView>
 
