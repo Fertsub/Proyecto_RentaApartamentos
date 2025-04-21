@@ -690,12 +690,6 @@
             <response code="404">Si el contrato no es encontrado</response>
             
         </member>
-        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.GetContratosLookup">
-            <summary>
-            Retorna la lista de contratos (uso exclusivo del FronEnd)   
-            </summary>
-            <returns>Una lista de contratos.</returns>
-        </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ContratoController.Get">
             <summary>
             Retorna la lista de contratos
@@ -1740,12 +1734,6 @@
             Propiedad usada internamente para almacenar los servicios como una cadena.
             </summary>
         </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.plan">
-            <summary>
-            Obtiene o establece el plan de servicios de la factura.
-            El valor predeterminado es Planes.Basico.
-            </summary>
-        </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.montoTotal">
             <summary>
             Obtiene el monto total de la factura. Se calcula utilizando el método CalcularMontoTotal().
@@ -1761,22 +1749,10 @@
             Enumeración que define los tipos de servicios disponibles.
             </summary>
         </member>
-        <member name="T:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Planes">
-            <summary>
-            Enumeración que define los planes de servicios disponibles.
-            </summary>
-        </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.CalcularMontoTotal">
             <summary>
             Calcula el monto total de la factura sumando los precios de los servicios y el plan seleccionado.
             </summary>
-        </member>
-        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.GetPrecioPlan(System.Nullable{ProyectoAPI_FabioDiscua_CristopherFlores.Models.Factura.Planes})">
-            <summary>
-            Obtiene el precio del plan de servicios seleccionado.
-            </summary>
-            <param name="plan">El plan de servicios.</param>
-            <returns>El precio del plan.</returns>
         </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Garante.#ctor">
             <summary>
@@ -1831,6 +1807,11 @@
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.SolicitudMantenimiento">
             <summary>
             Obtiene o establece el objeto Solicitud_Mantenimiento asociado al historial.
+            </summary>
+        </member>
+        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Historial_Mantenimiento.FechaRealizacion">
+            <summary>
+            Establece la fecha de realización del mantenimiento.
             </summary>
         </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Pago.#ctor">
@@ -1961,16 +1942,6 @@
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Apartamento">
             <summary>
             Obtiene o establece el objeto Apartamento asociado a la solicitud.
-            </summary>
-        </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.IdArrendatario">
-            <summary>
-            Obtiene o establece el ID del arrendatario que realizó la solicitud.
-            </summary>
-        </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Arrendatario">
-            <summary>
-            Obtiene o establece el objeto Arrendatario asociado a la solicitud.
             </summary>
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Solicitud_Mantenimiento.Descripcion">

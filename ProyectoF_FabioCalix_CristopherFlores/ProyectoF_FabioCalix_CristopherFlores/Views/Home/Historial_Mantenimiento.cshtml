@@ -17,13 +17,50 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+        columns.AddFor(m => m.id)
+            .Visible(false)
+            .AllowEditing(false);
 
-        columns.AddFor(m => m.IdEmpleado);
+        columns.AddFor(m => m.IdEmpleado)
+            .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi()
+                    .Controller("Empleado_Mantenimiento")
+                    .LoadAction("Get")
+                    .Key("id"))
+                .DisplayExpr("nombres")
+                .ValueExpr("id")
+            )
+            .Caption("Empleado")
+            .AllowEditing(false);
 
-        columns.AddFor(m => m.IdSol);
+        columns.AddFor(m => m.IdSol)
+            .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi()
+                    .Controller("Solicitud_Mantenimiento")
+                    .LoadAction("Get")
+                    .Key("id"))
+                .DisplayExpr("Costo")
+                .ValueExpr("id")
+            )
+            .Caption("Monto de la Solicitud")
+            .Format(Format.Currency)
+            .AllowEditing(false);
+
+        columns.AddFor(m => m.FechaRealizacion)
+            .Caption("Fecha de Realización")
+            .DataType(GridColumnDataType.Date)
+            .Format("dd/MM/yyyy")
+            .AllowEditing(false);
     })
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-    )
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Width("100%")
+    .Height(600)
+    .ShowBorders(true)
+       .Editing(e => e
+       .Mode(GridEditMode.Popup)
+       .AllowDeleting(true)
+   )
 )

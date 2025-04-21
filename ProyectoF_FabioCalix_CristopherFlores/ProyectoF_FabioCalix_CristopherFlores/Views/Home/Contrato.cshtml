@@ -5,58 +5,61 @@
 
 <h2>Contrato</h2>  
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()  
-   .DataSource(ds => ds.WebApi()  
-       .Controller("Pago")  
-       .LoadAction("Get")  
-       .InsertAction("Post")  
-       .UpdateAction("Put")  
-       .DeleteAction("Delete")  
-       .Key("id")  
-   )  
-   .RemoteOperations(true)  
-   .Columns(columns => {  
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
+   .DataSource(ds => ds.WebApi()
+       .Controller("Pago")
+       .LoadAction("Get")
+       .InsertAction("Post")
+       .UpdateAction("Put")
+       .DeleteAction("Delete")
+       .Key("id")
+   )
+   .RemoteOperations(true)
+   .Columns(columns => {
 
-       columns.AddFor(m => m.id)  
-           .Caption("ID");  
+       columns.AddFor(m => m.id)
+           .Caption("ID");
 
-       columns.AddFor(m => m.IdContrato)  
-           .Lookup(lookup => lookup  
-               .DataSource(d => d.WebApi()  
-                   .Controller("Contrato")  
-                   .LoadAction("Get")  
-                   .Key("id"))  
-               .DisplayExpr("arrendatario.nombres")  
-               .ValueExpr("id")  
-           )  
-           .Caption("Arrendatario");  
+       columns.AddFor(m => m.IdContrato)
+           .Lookup(lookup => lookup
+               .DataSource(d => d.WebApi()
+                   .Controller("Contrato")
+                   .LoadAction("Get")
+                   .Key("id"))
+               .DisplayExpr("arrendatario.nombres")
+               .ValueExpr("id")
+           )
+           .Caption("Arrendatario");
 
-       columns.AddFor(m => m.fechaPago)  
-           .Caption("Fecha de Pago")  
-           .DataType(GridColumnDataType.Date)  
-           .Format("dd/MM/yyyy");  
+       columns.AddFor(m => m.fechaPago)
+           .Caption("Fecha de Pago")
+           .DataType(GridColumnDataType.Date)
+           .Format("dd/MM/yyyy");
 
-       columns.AddFor(m => m.Monto)  
-           .Caption("Monto")  
-           .Format(Format.Currency);  
+       columns.AddFor(m => m.Monto)
+           .Caption("Monto")
+           .Format(Format.Currency);
 
-       columns.AddFor(m => m.estado)  
-           .Caption("Estado")  
-           .CellTemplate(  
+       columns.AddFor(m => m.estado)
+           .Caption("Estado")
+           .CellTemplate(
                new JS(@"function(container, options) {  
                    var text = options.value === true ? 'Pendiente' : 'En Proceso';  
                    container.text(text);  
-               }")  
-           );  
-   })  
-   .FilterRow(f => f.Visible(true))  
-   .HeaderFilter(f => f.Visible(true))  
-   .GroupPanel(p => p.Visible(true))  
-   .ShowBorders(true)  
-   .Editing(e => e  
-       .Mode(GridEditMode.Popup)  
-       .AllowAdding(true)  
-       .AllowUpdating(true)  
-       .AllowDeleting(true)  
-   )  
+               }")
+           );
+   })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Width("100%")
+    .Height(600)
+    .ShowBorders(true)
+    .Editing(e => e
+       .Mode(GridEditMode.Popup)
+       .AllowAdding(true)
+       .AllowUpdating(true)
+       .AllowDeleting(true)
+   )
 )

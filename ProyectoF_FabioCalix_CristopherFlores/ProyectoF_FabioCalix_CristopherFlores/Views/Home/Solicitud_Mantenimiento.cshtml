@@ -1,6 +1,13 @@
-﻿@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
+﻿@{
+    ViewData["Title"] = "Solicitud_Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Solicitud_Mantenimiento</h2>
+
+@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Solicitud_Mantenimiento>()
     .DataSource(ds => ds.WebApi()
-        .Controller("Pago")
+        .Controller("Solicitud_Mantenimiento")
         .LoadAction("Get")
         .InsertAction("Post")
         .UpdateAction("Put")
@@ -10,34 +17,61 @@
     .RemoteOperations(true)
     .Columns(columns => {
 
-        columns.AddFor(m => m.id).AllowEditing(false);
+        columns.AddFor(m => m.id);
 
-        columns.Add()
-            .Caption("Arrendatario")
-            .CellTemplate(@<text>
-                <span><%- data.contrato?.arrendatario?.nombres %> <%- data.contrato?.arrendatario?.apellidos %></span>
-            </text>);
+               columns.AddFor(m => m.IdApartamento)
+           .Caption("Apartamento")
+           .Lookup(lookup => lookup
+               .DataSource(d => d.WebApi()
+                   .Controller("Apartamento")
+                   .LoadAction("Get")
+                   .Key("id"))
+               .ValueExpr("id")
+               .DisplayExpr("Direccion")
+           );
 
-        columns.AddFor(m => m.fechaPago)
-            .Caption("Fecha de Pago")
-            .DataType(GridColumnDataType.Date);
+       columns.AddFor(m => m.Descripcion);
 
-        columns.AddFor(m => m.Monto)
-            .Caption("Monto");
+       columns.AddFor(m => m.IdEmpleado)
+           .Caption("Empleado de Mantenimiento")
+           .Lookup(lookup => lookup
+               .DataSource(d => d.WebApi()
+                   .Controller("Empleado_Mantenimiento")
+                   .LoadAction("Get")
+                   .Key("id"))
+               .ValueExpr("id")
+               .DisplayExpr("nombres")
+           );
 
-        columns.AddFor(m => m.estado)
-            .Caption("Estado")
-            .CellTemplate(
-                new JS(@"function(container, options) {
-                    var text = options.value ? 'Pendiente' : 'En Proceso';
-                    container.text(text);
-                }")
-            );
-    })
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
+       columns.AddFor(m => m.Costo)
+           .Format(Format.Currency)
+           .Caption("Monto");
+
+       columns.AddFor(m => m.FechaRealizacion)
+           .Caption("Fecha de Realización")
+           .DataType(GridColumnDataType.Date);
+
+       columns.AddFor(m => m.Estado)
+           .Caption("Estado")
+           .CellTemplate(
+               new JS(@"function(container, options) {
+           var text = options.value ? 'Realizado' : 'En Proceso';
+           container.text(text);
+               }")
+           );
+
+   })
+   .FilterRow(f => f.Visible(true))
+   .HeaderFilter(f => f.Visible(true))
+   .GroupPanel(p => p.Visible(true))
+   .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+   .Width("100%")
+   .Height(600)
+   .ShowBorders(true)
+   .Editing(e => e
+       .Mode(GridEditMode.Popup)
+       .AllowAdding(true)
+       .AllowUpdating(true)
+       .AllowDeleting(true)
+   )
 )

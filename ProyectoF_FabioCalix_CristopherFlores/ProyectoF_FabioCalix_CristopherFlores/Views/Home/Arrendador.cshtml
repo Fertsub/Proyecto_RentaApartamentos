@@ -33,6 +33,13 @@
 
         columns.AddFor(m => m.email);
     })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+    .Width("100%")
+    .Height(600)
+    .ShowBorders(true)
     .Editing(e => e
         .Mode(GridEditMode.Popup)
         .AllowAdding(true)

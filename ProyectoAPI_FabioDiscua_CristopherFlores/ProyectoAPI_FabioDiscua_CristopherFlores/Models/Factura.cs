@@ -13,7 +13,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// <summary>
         /// Constructor de la clase Factura. Inicializa la lista de servicios.
         /// </summary>
-        public Factura(){}
+        public Factura() { }
 
         /// <summary>
         /// Obtiene o establece el ID de la factura.
@@ -50,7 +50,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
                 {
                     Servicios = value
                         .Split(',')
-                        .Select(s => Enum.TryParse(s, out Servicio servicio) ? servicio : Servicio.Cable_Internet)
+                        .Select(s => Enum.TryParse(s, out Servicio servicio) ? servicio : Servicio.Limpieza)
                         .ToList();
                 }
                 else
@@ -60,12 +60,19 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
             }
         }
 
+        /*
         /// <summary>
         /// Obtiene o establece el plan de servicios de la factura.
-        /// El valor predeterminado es Planes.Basico.
         /// </summary>
         [DefaultValue(Planes.Basico)]
-        public Planes? plan { get; set; }
+        public Planes? plan
+        {
+            get;
+            set;
+        }
+
+        public string NombrePlan => plan?.ToString() ?? "Ninguno";
+        */
 
         /// <summary>
         /// Obtiene el monto total de la factura. Se calcula utilizando el método CalcularMontoTotal().
@@ -78,7 +85,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         public float MontoAlquiler
         {
             get => contrato?.apartamento?.PrecioAlquiler ?? 0;
-            private set {}
+            private set { }
         }
 
         /// <summary>
@@ -86,21 +93,23 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         /// </summary>
         public enum Servicio
         {
-            Cable_Internet,
             Limpieza,
-            Seguridad
+            Seguridad,
+            CableInternet
         }
 
+        /*
         /// <summary>
-        /// Enumeración que define los planes de servicios disponibles.
+        /// Enumeración de planes.
         /// </summary>
         public enum Planes
         {
             Ninguno,
-            Basico,
-            Avanzado,
-            Premium
+            Basico = 600,
+            Avanzado = 900,
+            Premium = 1300
         }
+        */
 
         /// <summary>
         /// Calcula el monto total de la factura sumando los precios de los servicios y el plan seleccionado.
@@ -113,8 +122,8 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
             {
                 switch (servicio)
                 {
-                    case Servicio.Cable_Internet:
-                        montoTotal += GetPrecioPlan(plan);
+                    case Servicio.CableInternet:
+                        montoTotal += 300;
                         break;
                     case Servicio.Limpieza:
                         montoTotal += 200;
@@ -126,27 +135,14 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
             }
         }
 
+        /*
         /// <summary>
-        /// Obtiene el precio del plan de servicios seleccionado.
+        /// Obtiene el precio del plan.
         /// </summary>
-        /// <param name="plan">El plan de servicios.</param>
-        /// <returns>El precio del plan.</returns>
         private float GetPrecioPlan(Planes? plan)
         {
-            switch (plan)
-            {
-                case Planes.Ninguno:
-                case null:
-                    return 0;
-                case Planes.Basico:
-                    return 600;
-                case Planes.Avanzado:
-                    return 900;
-                case Planes.Premium:
-                    return 1300;
-                default:
-                    return 0;
-            }
+            return plan.HasValue ? (int)plan.Value : 0;
         }
+        */
     }
 }

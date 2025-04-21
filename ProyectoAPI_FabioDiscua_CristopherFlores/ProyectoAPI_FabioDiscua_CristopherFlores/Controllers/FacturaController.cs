@@ -103,7 +103,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
 
             facturaExistente.IdContrato = facturaModificada.IdContrato;
             facturaExistente.emision = facturaModificada.emision;
-            facturaExistente.plan = facturaModificada.plan;
             facturaExistente.ServiciosStr = facturaModificada.ServiciosStr;
             facturaExistente.contrato = contratoExistente; 
             facturaExistente.CalcularMontoTotal();

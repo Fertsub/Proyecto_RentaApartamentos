@@ -63,7 +63,7 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         {
             var query = from arrendatario in db.Arrendatario
                         join solicitud in db.SolicitudMantenimiento
-                        on arrendatario.id equals solicitud.IdArrendatario
+                        on arrendatario.id equals solicitud.IdApartamento
                         join apartamento in db.Apartamento
                         on solicitud.IdApartamento equals apartamento.id
                         join historial in db.Historial

@@ -23,7 +23,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         {
             var solM = db.SolicitudMantenimiento
                 .Include(a => a.Apartamento)
-                .Include(a => a.Arrendatario)
                 .Include(a => a.Mantenimiento)
                 .ToList();
 
@@ -60,16 +59,14 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             }
 
             Apartamento apartamentoExistente = db.Apartamento.Find(solicitud.IdApartamento);
-            Arrendatario arrendatarioExistente = db.Arrendatario.Find(solicitud.IdArrendatario);
             Empleado_Mantenimiento empleadoExistente = db.EmpleadoMantenimiento.Find(solicitud.IdEmpleado);
 
-            if (apartamentoExistente == null || arrendatarioExistente == null || empleadoExistente == null)
+            if (apartamentoExistente == null || empleadoExistente == null)
             {
-                return BadRequest("Apartamento, Arrendatario o Empleado no encontrado.");
+                return BadRequest("Apartamento o Empleado no encontrado.");
             }
 
             solicitud.Apartamento = apartamentoExistente;
-            solicitud.Arrendatario = arrendatarioExistente;
             solicitud.Mantenimiento = empleadoExistente;
 
             db.SolicitudMantenimiento.Add(solicitud);
@@ -88,43 +85,35 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         /// <response code="404">Si la solicitud de mantenimiento no es encontrada.</response>
         public IHttpActionResult Put(int id, Solicitud_Mantenimiento solicitudModificada)
         {
-            if (solicitudModificada == null)
-            {
-                return BadRequest("La solicitud de mantenimiento no puede ser nula.");
-            }
-
-            var solicitudExistente = db.SolicitudMantenimiento.Find(id);
+            Solicitud_Mantenimiento solicitudExistente = db.SolicitudMantenimiento
+                .FirstOrDefault(s => s.id == id);
             if (solicitudExistente == null)
-            {
                 return NotFound();
-            }
 
-            var apartamentoExistente = db.Apartamento.Find(solicitudModificada.IdApartamento);
-            var arrendatarioExistente = db.Arrendatario.Find(solicitudModificada.IdArrendatario);
-            var empleadoExistente = db.EmpleadoMantenimiento.Find(solicitudModificada.IdEmpleado);
+            bool Pendiente = solicitudExistente.Estado == false;
+            bool Realizado = solicitudModificada.Estado == true;
 
-            if (apartamentoExistente == null || arrendatarioExistente == null || empleadoExistente == null)
-            {
-                return BadRequest("Apartamento, Arrendatario o Empleado no encontrado.");
-            }
-
-            solicitudExistente.IdApartamento = solicitudModificada.IdApartamento;
-            solicitudExistente.IdArrendatario = solicitudModificada.IdArrendatario;
-            solicitudExistente.IdEmpleado = solicitudModificada.IdEmpleado;
-            solicitudExistente.Apartamento = apartamentoExistente;
-            solicitudExistente.Arrendatario = arrendatarioExistente;
-            solicitudExistente.Mantenimiento = empleadoExistente;
             solicitudExistente.Descripcion = solicitudModificada.Descripcion;
             solicitudExistente.Costo = solicitudModificada.Costo;
             solicitudExistente.FechaRealizacion = solicitudModificada.FechaRealizacion;
             solicitudExistente.Estado = solicitudModificada.Estado;
+            solicitudExistente.IdEmpleado = solicitudModificada.IdEmpleado;
+            solicitudExistente.Mantenimiento = db.EmpleadoMantenimiento.Find(solicitudModificada.IdEmpleado);
 
             db.Entry(solicitudExistente).State = EntityState.Modified;
             db.SaveChanges();
 
-            db.Entry(solicitudExistente).Reference(s => s.Apartamento).Load();
-            db.Entry(solicitudExistente).Reference(s => s.Arrendatario).Load();
-            db.Entry(solicitudExistente).Reference(s => s.Mantenimiento).Load();
+            if (Pendiente && Realizado)
+            {
+                var historico = new Historial_Mantenimiento
+                {
+                    IdSol = solicitudExistente.id,
+                    IdEmpleado = solicitudExistente.IdEmpleado,
+                    FechaRealizacion = DateTime.Now
+                };
+                db.Historial.Add(historico);
+                db.SaveChanges();
+            }
 
             return Ok(solicitudExistente);
         }

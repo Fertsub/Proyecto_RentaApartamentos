@@ -28,16 +28,6 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Models
         public virtual Apartamento Apartamento { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el ID del arrendatario que realizó la solicitud.
-        /// </summary>
-        public int IdArrendatario { get; set; }
-
-        /// <summary>
-        /// Obtiene o establece el objeto Arrendatario asociado a la solicitud.
-        /// </summary>
-        public virtual Arrendatario Arrendatario { get; set; }
-
-        /// <summary>
         /// Obtiene o establece la descripción de la solicitud de mantenimiento.
         /// </summary>
         public string Descripcion { get; set; }

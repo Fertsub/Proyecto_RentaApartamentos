@@ -1,6 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Factura";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    /*var servicioOptions = Enum.GetValues(typeof(Factura.Servicio))
+    .Cast<Factura.Servicio>()
+    .Select(s => new { id = s.ToString(), text = s.ToString() })
+    .ToList();
+
+    var planOptions = Enum.GetValues(typeof(Factura.Planes))
+        .Cast<Factura.Planes>()
+        .Select(p => new { id = p.ToString(), text = p.ToString() })
+        .ToList();
+    */
 }
 
 <h2>Factura</h2>
@@ -16,43 +27,106 @@
     )
     .RemoteOperations(true)
     .Columns(columns => {
-        columns.AddFor(m => m.id);
+
+        columns.AddFor(m => m.id)
+            .Caption("ID")
+            .AllowEditing(false);
 
         columns.AddFor(m => m.IdContrato)
+            .Caption("Arrendatario")
             .Lookup(lookup => lookup
-            .DataSource(d => d.WebApi()
-                .Controller("Contrato")
-                .LoadAction("Get")
-                .Key("id"))
-            .DisplayExpr("arrendatario.nombres")
-            .ValueExpr("id")
-        )
-        .Caption("Arrendatario");
+                .DataSource(d => d.WebApi()
+                    .Controller("Contrato")
+                    .LoadAction("Get")
+                    .Key("id"))
+                .ValueExpr("id")
+                .DisplayExpr("arrendatario.nombres")
+            );
 
         columns.AddFor(m => m.emision)
-            .Format("date");
+            .Caption("Fecha Emisión")
+            .DataType(GridColumnDataType.Date)
+            .Format("dd/MM/yyyy");
 
-        columns.AddFor(m => m.ServiciosStr).Caption("Servicios");
+        columns.AddFor(m => m.ServiciosStr)
+            .Caption("Servicios");
+
+        /*
+        // Servicios
+        columns.AddFor(m => m.ServiciosStr)
+            .Caption("Servicios")
+            .EditCellTemp
+     * late(@<text>
+                @(Html.DevExtreme().TagBox()
+                    .DataSource(servicioOptions)
+                    .ValueExpr("id")
+                    .DisplayExpr("text")
+                    .Value(new JS("cellInfo.value ? cellInfo.value.split(',') : []"))
+                    .OnInitialized("function(e) { window.servBox = e.component; }")
+                    .OnValueChanged("onServiciosChanged")
+                )
+            </text>);
+
+        // Plan
+        columns.AddFor(m => m.plan)
+            .Caption("Plan Cable/Internet")
+            .CellTemplate("function(cellElement, cellInfo) { cellElement.text(cellInfo.value || 'Ninguno'); }")
+            .EditCellTemplate(@<text>
+                @(Html.DevExtreme().SelectBox()
+                    .DataSource(planOptions)
+                    .ValueExpr("id")
+                    .DisplayExpr("text")
+                    .Value(new JS("cellInfo.value || 'Ninguno'"))
+                    .OnInitialized("function(e) { window.planBox = e.component; }")
+                    .OnValueChanged("function(e){ cellInfo.setValue(e.value); }")
+                )
+            </text>);
+        */
 
         columns.AddFor(m => m.montoTotal)
-            .Format("currency")
-            .HeaderFilter(f => f.GroupInterval(1000));
+            .Caption("Monto Total")
+            .Format(Format.Currency)
+            .AllowEditing(false);
 
         columns.AddFor(m => m.MontoAlquiler)
-            .Format("currency")
-            .HeaderFilter(f => f.GroupInterval(1000));
+            .Caption("Alquiler")
+            .Format(Format.Currency)
+            .AllowEditing(false);
     })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
+    .Editing(edit => edit
         .Mode(GridEditMode.Popup)
         .AllowAdding(true)
         .AllowUpdating(true)
         .AllowDeleting(true)
+        .UseIcons(false)
     )
-)
+    /*.OnEditorPreparing(@<text>
+        function(e) {
+        if(e.dataField === 'plan') {
+        var servicios = (e.row.data.ServiciosStr || '').split(',');
+        var tieneCable = servicios.indexOf('Cable_Internet') !== -1;
+        e.editorOptions.disabled = !tieneCable;
+        if(!tieneCable) e.editorOptions.value = 'Ninguno';
+        }
+        }
+    </text>)*/
+    .ShowBorders(true)
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Width("100%")
+    .Height(600)
+    )
+
+@*@section Scripts {
+    <script>
+        function onServiciosChanged(e) {
+            var seleccion = e.value || [];
+            var tieneCable = seleccion.indexOf("Cable_Internet") !== -1;
+            if (window.planBox) {
+                planBox.option("disabled", !tieneCable);
+                if (!tieneCable) planBox.option("value", "Ninguno");
+            }
+        }
+    </script>
+}*@

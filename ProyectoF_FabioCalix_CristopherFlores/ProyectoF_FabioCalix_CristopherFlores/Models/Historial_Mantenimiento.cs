@@ -36,5 +36,10 @@ namespace ProyectoF_FabioCalix_CristopherFlores.Models
         /// Obtiene o establece el objeto Solicitud_Mantenimiento asociado al historial.
         /// </summary>
         public virtual Solicitud_Mantenimiento SolicitudMantenimiento { get; set; }
+
+        /// <summary>
+        /// Establece la fecha de realización del mantenimiento.
+        /// </summary>
+        public DateTime FechaRealizacion { get; set; }
     }
 }
