@@ -24,7 +24,6 @@
 
 
             columns.AddFor(m => m.id)
-                .AllowEditing(false)
                 .Visible(false);
 
             columns.AddFor(m => m.dni);
@@ -37,10 +36,11 @@
 
             columns.AddFor(m => m.email);
 
-            columns.AddFor(m => m.EspecialidadesDB);
+            columns.AddFor(m => m.EspecialidadesDB)
+                .Caption("Especialidades");
 
             columns.AddFor(m => m.sueldo)
-                .Caption("Monto")
+                .Caption("Sueldo")
                 .Format(Format.Currency); 
             
             columns.AddFor(m => m.estado)

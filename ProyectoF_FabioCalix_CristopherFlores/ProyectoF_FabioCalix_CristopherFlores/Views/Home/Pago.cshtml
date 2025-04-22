@@ -22,8 +22,7 @@
         .Columns(columns => {
 
             columns.AddFor(m => m.id).Caption("ID")
-                .Visible(false)
-                .AllowEditing(false);
+                .Visible(false);
 
             columns.AddFor(m => m.IdContrato)
                 .Lookup(lookup => lookup

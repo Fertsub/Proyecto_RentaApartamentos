@@ -45,9 +45,11 @@
             columns.AddFor(m => m.email)
                 .Width(300);
 
-            columns.AddFor(m => m.numRegistro);
+            columns.AddFor(m => m.numRegistro)
+                .Caption("Num. Registro");
 
             columns.AddFor(m => m.direccionResidencia)
+                .Caption("Dirección de Residencia")
                 .Width(200)
                 .CellTemplate(
                     new JS(@"function(container, options) {

@@ -27,9 +27,11 @@
                 columns.AddFor(m => m.Direccion);
 
                 columns.AddFor(m => m.NumHabitaciones)
+                    .Caption("Número de Habitaciones")
                     .HeaderFilter(f => f.GroupInterval(1));
 
                 columns.AddFor(m => m.PrecioAlquiler)
+                    .Caption("Precio de Alquiler")
                     .HeaderFilter(f => f.GroupInterval(1000))
                     .Format(Format.Currency);
 

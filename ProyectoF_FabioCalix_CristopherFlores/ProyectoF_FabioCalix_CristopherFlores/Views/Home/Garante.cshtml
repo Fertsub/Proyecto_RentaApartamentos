@@ -23,10 +23,9 @@
         .GroupPanel(gp => gp.Visible(true))
         .FilterRow(f => f.Visible(true))
         .HeaderFilter(h => h.Visible(true))
-        .SearchPanel(s => s.Visible(true).HighlightCaseSensitive(true))
         .Columns(columns => {
 
-            columns.AddFor(m => m.id).Caption("ID").AllowEditing(false);
+            columns.AddFor(m => m.id).Visible(false);
 
             columns.AddFor(m => m.dni)
                 .Caption("DNI");
