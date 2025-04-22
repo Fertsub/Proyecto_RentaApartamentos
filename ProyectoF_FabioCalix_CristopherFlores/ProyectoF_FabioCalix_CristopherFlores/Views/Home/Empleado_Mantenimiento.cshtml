@@ -3,60 +3,73 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Empleado_Mantenimiento</h2>
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Empleados de Mantenimiento</h3>
+    </div>
+    <div class="card-body bg-light">
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Empleado_Mantenimiento>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Empleado_Mantenimiento")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Empleado_Mantenimiento>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Empleado_Mantenimiento")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+
+
+            columns.AddFor(m => m.id)
+                .AllowEditing(false)
+                .Visible(false);
+
+            columns.AddFor(m => m.dni);
+
+            columns.AddFor(m => m.nombres);
+
+            columns.AddFor(m => m.apellidos);
+
+            columns.AddFor(m => m.telefono);
+
+            columns.AddFor(m => m.email);
+
+            columns.AddFor(m => m.EspecialidadesDB);
+
+            columns.AddFor(m => m.sueldo)
+                .Caption("Monto")
+                .Format(Format.Currency); 
+            
+            columns.AddFor(m => m.estado)
+                .Caption("Estado")
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                        var text = options.value ? 'Disponible' : 'Ocupado';
+                        container.text(text);
+                    }")
+                );
+
+            columns.AddFor(m => m.fechaContratacion);
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+        .Width("100%")
+        .Height(600)
+        .ShowBorders(true)
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
     )
-    .RemoteOperations(true)
-    .Columns(columns => {
 
-        columns.AddFor(m => m.EspecialidadesDB);
+    </div>
+</div>
 
-        columns.AddFor(m => m.sueldo);
-
-        columns.AddFor(m => m.fechaContratacion);
-
-        columns.AddFor(m => m.estado)
-            .Caption("Estado")
-            .CellTemplate(
-                new JS(@"function(container, options) {
-                    var text = options.value ? 'Disponible' : 'Ocupado';
-                    container.text(text);
-                }")
-            );
-
-        columns.AddFor(m => m.id)
-            .AllowEditing(false)
-            .Visible(false);
-
-        columns.AddFor(m => m.dni);
-
-        columns.AddFor(m => m.nombres);
-
-        columns.AddFor(m => m.apellidos);
-
-        columns.AddFor(m => m.telefono);
-
-        columns.AddFor(m => m.email);
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)

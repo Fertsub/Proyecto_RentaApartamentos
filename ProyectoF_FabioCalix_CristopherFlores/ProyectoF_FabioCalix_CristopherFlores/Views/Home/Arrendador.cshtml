@@ -3,47 +3,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Arrendadores</h2>
+@section Styles {
+    <style>
+        .text-ellipsis {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+        }
+    </style>
+}
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Arrendador>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Arrendador")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Arrendadores</h3>
+    </div>
+    <div class="card-body bg-light">
+
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Arrendador>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Arrendador")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+            columns.AddFor(m => m.id).Visible(false);
+
+            columns.AddFor(m => m.dni);
+
+            columns.AddFor(m => m.nombres);
+
+            columns.AddFor(m => m.apellidos);
+
+            columns.AddFor(m => m.telefono);
+
+            columns.AddFor(m => m.email)
+                .Width(300);
+
+            columns.AddFor(m => m.numRegistro);
+
+            columns.AddFor(m => m.direccionResidencia)
+                .Width(200)
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                    var text = options.value || '';
+                    $('<div>')
+                        .addClass('text-ellipsis')
+                        .attr('title', text)
+                        .text(text)
+                        .appendTo(container);
+                }")
+                );
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+        .Width("100%")
+        .Height(600)
+        .ShowBorders(true)
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
     )
-    .RemoteOperations(true)
-    .Columns(columns => {
 
-        columns.AddFor(m => m.numRegistro);
+    </div>
+</div>
 
-        columns.AddFor(m => m.direccionResidencia);
 
-        columns.AddFor(m => m.id);
-
-        columns.AddFor(m => m.dni);
-
-        columns.AddFor(m => m.nombres);
-
-        columns.AddFor(m => m.apellidos);
-
-        columns.AddFor(m => m.telefono);
-
-        columns.AddFor(m => m.email);
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)

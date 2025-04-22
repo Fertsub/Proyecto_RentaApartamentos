@@ -3,64 +3,73 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Historial de Mantenimiento</h2>
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Historial de Mantenimientos</h3>
+    </div>
+    <div class="card-body bg-light">
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Historial_Mantenimiento>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Historial_Mantenimiento")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Historial_Mantenimiento>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Historial_Mantenimiento")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+            columns.AddFor(m => m.id)
+                .Visible(false)
+                .AllowEditing(false);
+
+            columns.AddFor(m => m.IdEmpleado)
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.WebApi()
+                        .Controller("Empleado_Mantenimiento")
+                        .LoadAction("Get")
+                        .Key("id"))
+                    .DisplayExpr("nombres")
+                    .ValueExpr("id")
+                )
+                .Caption("Empleado")
+                .AllowEditing(false);
+
+            columns.AddFor(m => m.IdSol)
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.WebApi()
+                        .Controller("Solicitud_Mantenimiento")
+                        .LoadAction("Get")
+                        .Key("id"))
+                    .DisplayExpr("Costo")
+                    .ValueExpr("id")
+                )
+                .Caption("Monto de la Solicitud")
+                .Format(Format.Currency)
+                .AllowEditing(false);
+
+            columns.AddFor(m => m.FechaRealizacion)
+                .Caption("Fecha de Realización")
+                .DataType(GridColumnDataType.Date)
+                .Format("dd/MM/yyyy")
+                .AllowEditing(false);
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+        .Width("100%")
+        .Height(600)
+        .ShowBorders(true)
+           .Editing(e => e
+           .Mode(GridEditMode.Popup)
+           .UseIcons(true)
+           .AllowDeleting(true)
+       )
     )
-    .RemoteOperations(true)
-    .Columns(columns => {
 
-        columns.AddFor(m => m.id)
-            .Visible(false)
-            .AllowEditing(false);
+    </div>
+</div>
 
-        columns.AddFor(m => m.IdEmpleado)
-            .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi()
-                    .Controller("Empleado_Mantenimiento")
-                    .LoadAction("Get")
-                    .Key("id"))
-                .DisplayExpr("nombres")
-                .ValueExpr("id")
-            )
-            .Caption("Empleado")
-            .AllowEditing(false);
-
-        columns.AddFor(m => m.IdSol)
-            .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi()
-                    .Controller("Solicitud_Mantenimiento")
-                    .LoadAction("Get")
-                    .Key("id"))
-                .DisplayExpr("Costo")
-                .ValueExpr("id")
-            )
-            .Caption("Monto de la Solicitud")
-            .Format(Format.Currency)
-            .AllowEditing(false);
-
-        columns.AddFor(m => m.FechaRealizacion)
-            .Caption("Fecha de Realización")
-            .DataType(GridColumnDataType.Date)
-            .Format("dd/MM/yyyy")
-            .AllowEditing(false);
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-       .Editing(e => e
-       .Mode(GridEditMode.Popup)
-       .AllowDeleting(true)
-   )
-)
