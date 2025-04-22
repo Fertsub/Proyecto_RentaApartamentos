@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "nombre-del-proyecto",
-    "slug": "nombre-del-proyecto",
+    "entryPoint": "./App.tsx",
+    "name": "ProyectoUIMovil",
+    "slug": "proyecto-ui-movil",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -16,7 +17,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "src/assets/favicon.png",
       "bundler": "metro"
     }
   }
