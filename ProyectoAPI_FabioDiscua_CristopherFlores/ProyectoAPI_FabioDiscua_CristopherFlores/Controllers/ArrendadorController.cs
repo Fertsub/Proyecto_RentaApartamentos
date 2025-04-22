@@ -15,40 +15,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         private DBContextProject db = new DBContextProject();
 
         /// <summary>
-        /// Obtener la lista de Arrendadores ordenados según el contrato mas antiguo
-        /// </summary>
-        /// <returns>JSON Arrendadores</returns>
-        /// <response code="200">Devuelve el arrendador encontrado</response>
-        /// <response code="404">Si el arrendador no es encontrado</response>
-        /// 
-        [HttpGet]
-        [SwaggerOperation("GetContratoReciente")]
-        [Route("api/GetContratoReciente")]
-        public IHttpActionResult GetContratoReciente()
-        {
-            var query = from arrendador in db.Arrendador
-                        join contrato in db.Contrato
-                        on arrendador.id equals contrato.arrendador.id
-                        join apartamento in db.Apartamento
-                        on contrato.apartamento.id equals apartamento.id
-                        join arrendatario in db.Arrendatario
-                        on contrato.arrendatario.id equals arrendatario.id
-                        orderby contrato.fechaInicio ascending 
-                        select new
-                        {
-                            idArrendador = arrendador.id,
-                            nombreArrendador = arrendador.nombres + " " + arrendador.apellidos,
-                            arrendador.telefono,
-                            numeroApartamento = apartamento.NumHabitaciones,
-                            nombreArrendatario = arrendatario.nombres + " " + arrendatario.apellidos,
-                            fechaInicioContrato = contrato.fechaInicio,
-                            fechaFinContrato = contrato.fechaFin
-                        };
-
-            return Ok(query);
-        }
-
-        /// <summary>
         /// Obtener la lista de Arrendadores ordenados según los pagos mas recientes
         /// </summary>
         /// <returns>JSON Arrendadores</returns>
