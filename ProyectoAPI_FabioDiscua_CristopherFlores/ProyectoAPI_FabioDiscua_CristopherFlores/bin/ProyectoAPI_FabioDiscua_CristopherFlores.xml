@@ -985,15 +985,6 @@
             <response code="200">Si el historial de mantenimiento es eliminado correctamente.</response>
             <response code="404">Si el historial de mantenimiento no es encontrado.</response>
         </member>
-        <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.GetContratoReciente">
-            <summary>
-            Obtener la lista de Arrendadores ordenados según el contrato mas antiguo
-            </summary>
-            <returns>JSON Arrendadores</returns>
-            <response code="200">Devuelve el arrendador encontrado</response>
-            <response code="404">Si el arrendador no es encontrado</response>
-            
-        </member>
         <member name="M:ProyectoAPI_FabioDiscua_CristopherFlores.Controllers.ArrendadorController.GetPagosRecientes">
             <summary>
             Obtener la lista de Arrendadores ordenados según los pagos mas recientes
@@ -1397,16 +1388,6 @@
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.apartamento">
             <summary>
             Obtiene o establece el objeto Apartamento asociado al contrato.
-            </summary>
-        </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.IdArrendador">
-            <summary>
-            Obtiene o establece el ID del arrendador asociado al contrato.
-            </summary>
-        </member>
-        <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.arrendador">
-            <summary>
-            Obtiene o establece el objeto Arrendador asociado al contrato.
             </summary>
         </member>
         <member name="P:ProyectoAPI_FabioDiscua_CristopherFlores.Models.Contrato.IdArrendatario">

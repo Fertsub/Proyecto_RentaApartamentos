@@ -3,75 +3,106 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Solicitud_Mantenimiento</h2>
+@section Styles {
+    <style>
+        .text-ellipsis {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+        }
+    </style>
+}
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Solicitud_Mantenimiento>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Solicitud_Mantenimiento")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Solicitudes de Mantenimiento</h3>
+    </div>
+    <div class="card-body bg-light">
+
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Solicitud_Mantenimiento>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Solicitud_Mantenimiento")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+            columns.AddFor(m => m.id).Visible(false);
+
+            columns.AddFor(m => m.IdApartamento)
+            .Caption("Apartamento")
+            .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi()
+                    .Controller("Apartamento")
+                    .LoadAction("Get")
+                    .Key("id"))
+                .ValueExpr("id")
+                .DisplayExpr("Direccion")
+            ).AllowEditing(false);
+
+            columns.AddFor(m => m.Descripcion)
+                .Caption("Descripción")
+                .Width(300)
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                    var text = options.value || '';
+                    $('<div>')
+                        .addClass('text-ellipsis')
+                        .attr('title', text)
+                        .text(text)
+                        .appendTo(container);
+                }")
+                ).AllowEditing(false);
+
+            columns.AddFor(m => m.IdEmpleado)
+               .Caption("Empleado de Mantenimiento")
+               .Lookup(lookup => lookup
+                   .DataSource(d => d.WebApi()
+                       .Controller("Empleado_Mantenimiento")
+                       .LoadAction("Get")
+                       .Key("id"))
+                   .ValueExpr("id")
+                   .DisplayExpr("nombres")
+               ).AllowEditing(false);
+
+            columns.AddFor(m => m.Costo)
+                .Format(Format.Currency)
+                .Caption("Monto").AllowEditing(false);
+
+            columns.AddFor(m => m.FechaRealizacion)
+                .Caption("Fecha de Realización")
+                .DataType(GridColumnDataType.Date);
+
+            columns.AddFor(m => m.Estado)
+                .Caption("Estado")
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+               var text = options.value ? 'Realizado' : 'En Proceso';
+               container.text(text);
+                   }")
+                );
+
+        })
+       .FilterRow(f => f.Visible(true))
+       .HeaderFilter(f => f.Visible(true))
+       .GroupPanel(p => p.Visible(true))
+       .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+       .Width("100%")
+       .Height(600)
+       .ShowBorders(true)
+       .Editing(e => e
+           .Mode(GridEditMode.Popup)
+           .UseIcons(true)
+           .AllowUpdating(true)
+           .AllowDeleting(true)
+       )
     )
-    .RemoteOperations(true)
-    .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+    </div>
+</div>
 
-               columns.AddFor(m => m.IdApartamento)
-           .Caption("Apartamento")
-           .Lookup(lookup => lookup
-               .DataSource(d => d.WebApi()
-                   .Controller("Apartamento")
-                   .LoadAction("Get")
-                   .Key("id"))
-               .ValueExpr("id")
-               .DisplayExpr("Direccion")
-           );
-
-       columns.AddFor(m => m.Descripcion);
-
-       columns.AddFor(m => m.IdEmpleado)
-           .Caption("Empleado de Mantenimiento")
-           .Lookup(lookup => lookup
-               .DataSource(d => d.WebApi()
-                   .Controller("Empleado_Mantenimiento")
-                   .LoadAction("Get")
-                   .Key("id"))
-               .ValueExpr("id")
-               .DisplayExpr("nombres")
-           );
-
-       columns.AddFor(m => m.Costo)
-           .Format(Format.Currency)
-           .Caption("Monto");
-
-       columns.AddFor(m => m.FechaRealizacion)
-           .Caption("Fecha de Realización")
-           .DataType(GridColumnDataType.Date);
-
-       columns.AddFor(m => m.Estado)
-           .Caption("Estado")
-           .CellTemplate(
-               new JS(@"function(container, options) {
-           var text = options.value ? 'Realizado' : 'En Proceso';
-           container.text(text);
-               }")
-           );
-
-   })
-   .FilterRow(f => f.Visible(true))
-   .HeaderFilter(f => f.Visible(true))
-   .GroupPanel(p => p.Visible(true))
-   .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-   .Width("100%")
-   .Height(600)
-   .ShowBorders(true)
-   .Editing(e => e
-       .Mode(GridEditMode.Popup)
-       .AllowAdding(true)
-       .AllowUpdating(true)
-       .AllowDeleting(true)
-   )
-)

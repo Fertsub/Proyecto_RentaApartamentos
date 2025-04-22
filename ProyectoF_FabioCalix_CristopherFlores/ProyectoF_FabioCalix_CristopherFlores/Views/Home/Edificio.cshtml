@@ -3,39 +3,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edificio</h2>
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Edificios</h3>
+    </div>
+    <div class="card-body bg-light">
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Edificio>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Edificio")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Edificio>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Edificio")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
+
+            columns.AddFor(m => m.id)
+                .Visible(false);
+
+            columns.AddFor(m => m.Nombre);
+
+            columns.AddFor(m => m.Direccion);
+
+            columns.AddFor(m => m.Capacidad);
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+        .Width("100%")
+        .Height(600)
+        .ShowBorders(true)
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
     )
-    .RemoteOperations(true)
-    .Columns(columns => {
 
-        columns.AddFor(m => m.id);
+    </div>
+</div>
 
-        columns.AddFor(m => m.Nombre);
 
-        columns.AddFor(m => m.Direccion);
-
-        columns.AddFor(m => m.Capacidad);
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)

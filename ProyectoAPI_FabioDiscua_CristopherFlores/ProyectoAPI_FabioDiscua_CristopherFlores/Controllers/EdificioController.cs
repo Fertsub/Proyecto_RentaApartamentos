@@ -70,8 +70,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                         on edificio.id equals apartamento.Edificio.id
                         join contrato in db.Contrato
                         on apartamento.id equals contrato.apartamento.id
-                        join arrendador in db.Arrendador
-                        on contrato.arrendador.id equals arrendador.id
                         join arrendatario in db.Arrendatario
                         on contrato.arrendatario.id equals arrendatario.id
                         orderby edificio.Nombre, arrendatario.nombres, arrendatario.apellidos
@@ -80,7 +78,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                             edificioId = edificio.id,
                             nombre = edificio.Nombre,
                             direccion = edificio.Direccion,
-                            arrendador = arrendador.nombres + " " + arrendador.apellidos,
                             arrendatario = arrendatario.nombres + " " + arrendatario.apellidos
                         };
 

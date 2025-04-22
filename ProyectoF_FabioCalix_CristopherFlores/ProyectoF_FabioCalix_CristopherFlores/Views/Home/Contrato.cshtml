@@ -1,65 +1,88 @@
-﻿@{  
-   ViewData["Title"] = "Contrato";  
-   Layout = "~/Views/Shared/_Layout.cshtml";  
-}  
+﻿@{
+    ViewData["Title"] = "Contrato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<h2>Contrato</h2>  
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
-   .DataSource(ds => ds.WebApi()
-       .Controller("Pago")
-       .LoadAction("Get")
-       .InsertAction("Post")
-       .UpdateAction("Put")
-       .DeleteAction("Delete")
-       .Key("id")
-   )
-   .RemoteOperations(true)
-   .Columns(columns => {
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Contratos</h3>
+    </div>
+    <div class="card-body bg-light">
 
-       columns.AddFor(m => m.id)
-           .Caption("ID");
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Contrato>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Contrato")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
 
-       columns.AddFor(m => m.IdContrato)
-           .Lookup(lookup => lookup
-               .DataSource(d => d.WebApi()
-                   .Controller("Contrato")
-                   .LoadAction("Get")
-                   .Key("id"))
-               .DisplayExpr("arrendatario.nombres")
-               .ValueExpr("id")
-           )
-           .Caption("Arrendatario");
+            columns.AddFor(m => m.id).Visible(false);
 
-       columns.AddFor(m => m.fechaPago)
-           .Caption("Fecha de Pago")
-           .DataType(GridColumnDataType.Date)
-           .Format("dd/MM/yyyy");
+            columns.AddFor(m => m.IdApartamento)
+                .Caption("Apartamento")
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.WebApi()
+                        .Controller("apartamento")
+                        .LoadAction("Get")
+                        .Key("id"))
+                    .ValueExpr("id")
+                    .DisplayExpr("Direccion")
+                );
 
-       columns.AddFor(m => m.Monto)
-           .Caption("Monto")
-           .Format(Format.Currency);
+            columns.AddFor(m => m.IdArrendatario)
+             .Caption("Arrendatario")
+             .Lookup(lookup => lookup
+                 .DataSource(d => d.WebApi()
+                     .Controller("arrendatario")
+                     .LoadAction("Get")
+                     .Key("id"))
+                 .ValueExpr("id")
+                 .DisplayExpr("nombres")
+             );
 
-       columns.AddFor(m => m.estado)
-           .Caption("Estado")
-           .CellTemplate(
-               new JS(@"function(container, options) {  
-                   var text = options.value === true ? 'Pendiente' : 'En Proceso';  
-                   container.text(text);  
-               }")
-           );
-   })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
-       .Mode(GridEditMode.Popup)
-       .AllowAdding(true)
-       .AllowUpdating(true)
-       .AllowDeleting(true)
-   )
-)
+            columns.AddFor(m => m.fechaInicio)
+                    .DataType(GridColumnDataType.Date)
+                    .Format("dd/MM/yyyy"); 
+
+            columns.AddFor(m => m.fechaFin)
+                    .DataType(GridColumnDataType.Date)
+                    .Format("dd/MM/yyyy");
+
+            columns.AddFor(m => m.Alquiler)
+                    .Format(Format.Currency)
+                    .AllowEditing(false); 
+
+            columns.AddFor(m => m.estado)
+                .Caption("Estado")
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                         var text = options.value === true ? 'Activo' : 'Inactivo';
+                         container.text(text);
+                     }")
+                );
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+        .Width("100%")
+        .Height(600)
+        .ShowBorders(true)
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
+    )
+
+    </div>
+</div>
+

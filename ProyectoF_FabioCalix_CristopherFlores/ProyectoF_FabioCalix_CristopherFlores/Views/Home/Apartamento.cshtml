@@ -3,69 +3,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Apartamento</h2>
-
 @using ProyectoF_FabioCalix_CristopherFlores.Models
 
-@(Html.DevExtreme().DataGrid<Apartamento>()
-    .DataSource(d => d.WebApi()
-        .Controller("Apartamento")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
-    )
-    .RemoteOperations(true)
-    .Columns(columns => {
-        columns.AddFor(m => m.id);
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Apartamentos</h3>
+    </div>
+    <div class="card-body bg-light">
 
-        columns.AddFor(m => m.Direccion);
+        @(Html.DevExtreme().DataGrid<Apartamento>()
+            .DataSource(d => d.WebApi()
+                .Controller("Apartamento")
+                .LoadAction("Get")
+                .InsertAction("Post")
+                .UpdateAction("Put")
+                .DeleteAction("Delete")
+                .Key("id")
+            )
+            .RemoteOperations(true)
+            .Columns(columns => {
+                columns.AddFor(m => m.id).Visible(false);
 
-        columns.AddFor(m => m.NumHabitaciones)
-            .HeaderFilter(f => f.GroupInterval(1));
+                columns.AddFor(m => m.Direccion);
 
-        columns.AddFor(m => m.PrecioAlquiler)
-            .HeaderFilter(f => f.GroupInterval(1000))
-            .Format(Format.Currency);
+                columns.AddFor(m => m.NumHabitaciones)
+                    .Caption("Número de Habitaciones")
+                    .HeaderFilter(f => f.GroupInterval(1));
 
-        columns.AddFor(m => m.Disponible)
-            .DataType(GridColumnDataType.Boolean);
+                columns.AddFor(m => m.PrecioAlquiler)
+                    .Caption("Precio de Alquiler")
+                    .HeaderFilter(f => f.GroupInterval(1000))
+                    .Format(Format.Currency);
 
-        columns.AddFor(m => m.IdArrendador)
-            .Caption("Arrendador")
-            .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi()
-                    .Controller("Arrendador")
-                    .LoadAction("Get")
-                    .Key("id"))
-                .ValueExpr("id")
-                .DisplayExpr("nombres")
-            );
+                columns.AddFor(m => m.Disponible)
+                    .DataType(GridColumnDataType.Boolean);
 
-        columns.AddFor(m => m.IdEdificio)
-            .Caption("Edificio")
-            .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi()
-                    .Controller("Edificio")
-                    .LoadAction("Get")
-                    .Key("id"))
-                .ValueExpr("id")
-                .DisplayExpr("Nombre") 
-            );
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
-    .Grouping(g => g.AutoExpandAll(false))
-    .Width("100%")
-    .Height(600)
-    .ShowBorders(true)
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)
+                columns.AddFor(m => m.IdArrendador)
+                    .Caption("Arrendador")
+                    .Lookup(lookup => lookup
+                        .DataSource(d => d.WebApi()
+                            .Controller("Arrendador")
+                            .LoadAction("Get")
+                            .Key("id"))
+                        .ValueExpr("id")
+                        .DisplayExpr("nombres")
+                    );
+
+                columns.AddFor(m => m.IdEdificio)
+                    .Caption("Edificio")
+                    .Lookup(lookup => lookup
+                        .DataSource(d => d.WebApi()
+                            .Controller("Edificio")
+                            .LoadAction("Get")
+                            .Key("id"))
+                        .ValueExpr("id")
+                        .DisplayExpr("Nombre")
+                    );
+            })
+            .FilterRow(f => f.Visible(true))
+            .HeaderFilter(f => f.Visible(true))
+            .GroupPanel(p => p.Visible(true))
+            .Scrolling(s => s.Mode(GridScrollingMode.Virtual))
+            .Grouping(g => g.AutoExpandAll(false))
+            .Width("100%")
+            .Height(600)
+            .ShowBorders(true)
+            .Editing(e => e
+                .Mode(GridEditMode.Popup)
+                .UseIcons(true)
+                .AllowAdding(true)
+                .AllowUpdating(true)
+                .AllowDeleting(true)
+            )
+        )
+    </div>
+</div>

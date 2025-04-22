@@ -3,74 +3,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Pago</h2>
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Pagos</h3>
+    </div>
+    <div class="card-body bg-light">
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Pago")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
-    )
-    .RemoteOperations(true)
-    .Columns(columns => {
-
-        columns.AddFor(m => m.id).Caption("ID").AllowEditing(false);
-
-        columns.AddFor(m => m.IdContrato)
-            .Lookup(lookup => lookup
-            .DataSource(d => d.WebApi()
-                .Controller("Contrato")
-                .LoadAction("Get")
-                .Key("id"))
-            .DisplayExpr("arrendatario.nombres")
-            .ValueExpr("id")
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Pago>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Pago")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
         )
-        .Caption("Arrendatario");
+        .RemoteOperations(true)
+        .Columns(columns => {
 
-        columns.AddFor(m => m.fechaPago)
-            .Caption("Fecha de Pago")
-            .DataType(GridColumnDataType.Date);
+            columns.AddFor(m => m.id).Caption("ID")
+                .Visible(false);
 
-        columns.AddFor(m => m.Monto)
-            .Caption("Monto")
-            .Format(Format.Currency)
-            .AllowEditing(false);
+            columns.AddFor(m => m.IdContrato)
+                .Lookup(lookup => lookup
+                .DataSource(d => d.WebApi()
+                    .Controller("Contrato")
+                    .LoadAction("Get")
+                    .Key("id"))
+                .DisplayExpr("arrendatario.nombres")
+                .ValueExpr("id")
+            )
+            .Caption("Arrendatario");
 
-        columns.AddFor(m => m.estado)
-            .Caption("Estado")
-            .CellTemplate(
-                new JS(@"function(container, options) {  
-                    var text = options.value === true ? 'Pendiente' : 'Pagado';  
-                    container.text(text);  
-                }")
-            );
-    })
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .ShowBorders(true)
-    .MasterDetail(md => md
-        .Enabled(true)
-        .Template(@<text>
-            <div class="p-2">
-                <p><strong>Detalles del Contrato:</strong></p>
-                <div>
-                    ID: <strong><%- data.contrato.id %></strong><br />
-                    Fecha de Inicio: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaInicio), 'dd/MM/yyyy') %></strong><br />
-                    Fecha Fin: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaFin), 'dd/MM/yyyy') %></strong><br />
-                    Arrendatario: <strong><%- data.contrato.arrendatario.nombres %> <%- data.contrato.arrendatario.apellidos %></strong><br />
-                    Apartamento: <strong><%- data.contrato.apartamento.numero %> - Direccion <%- data.contrato.apartamento.Direccion %></strong>
+            columns.AddFor(m => m.fechaPago)
+                .Caption("Fecha de Pago")
+                .DataType(GridColumnDataType.Date);
+
+            columns.AddFor(m => m.Monto)
+                .Caption("Monto")
+                .Format(Format.Currency)
+                .AllowEditing(false);
+
+            columns.AddFor(m => m.estado)
+                .Caption("Estado")
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                        var text = options.value === true ? 'Pendiente' : 'Pagado';
+                        container.text(text);
+                    }")
+                );
+        })
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .ShowBorders(true)
+        .Width("100%")
+        .Height(600)
+        .MasterDetail(md => md
+            .Enabled(true)
+            .Template(@<text>
+                <div class="p-2">
+                    <p><strong>Detalles del Contrato:</strong></p>
+                    <div>
+                        ID: <strong><%- data.contrato.id %></strong><br />
+                        Fecha de Inicio: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaInicio), 'dd/MM/yyyy') %></strong><br />
+                        Fecha Fin: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaFin), 'dd/MM/yyyy') %></strong><br />
+                        Arrendatario: <strong><%- data.contrato.arrendatario.nombres %> <%- data.contrato.arrendatario.apellidos %></strong><br />
+                        Apartamento: <strong><%- data.contrato.apartamento.numero %> - Direccion <%- data.contrato.apartamento.Direccion %></strong>
+                    </div>
                 </div>
-            </div>
-        </text>)
+            </text>)
+        )
+        .Editing(e => e
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
     )
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)
+
+
+    </div>
+</div>
+

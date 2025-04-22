@@ -14,119 +14,142 @@
     */
 }
 
-<h2>Factura</h2>
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-dark text-white">
+        <h3 class="mb-0">Facturas</h3>
+    </div>
+    <div class="card-body bg-light">
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Factura>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Factura")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
-    )
-    .RemoteOperations(true)
-    .Columns(columns => {
+        @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Factura>()
+        .DataSource(ds => ds.WebApi()
+            .Controller("Factura")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
 
-        columns.AddFor(m => m.id)
-            .Caption("ID")
-            .AllowEditing(false);
+            columns.AddFor(m => m.id)
+                .Visible(false);
 
-        columns.AddFor(m => m.IdContrato)
-            .Caption("Arrendatario")
-            .Lookup(lookup => lookup
-                .DataSource(d => d.WebApi()
-                    .Controller("Contrato")
-                    .LoadAction("Get")
-                    .Key("id"))
-                .ValueExpr("id")
-                .DisplayExpr("arrendatario.nombres")
-            );
-
-        columns.AddFor(m => m.emision)
-            .Caption("Fecha Emisión")
-            .DataType(GridColumnDataType.Date)
-            .Format("dd/MM/yyyy");
-
-        columns.AddFor(m => m.ServiciosStr)
-            .Caption("Servicios");
-
-        /*
-        // Servicios
-        columns.AddFor(m => m.ServiciosStr)
-            .Caption("Servicios")
-            .EditCellTemp
-     * late(@<text>
-                @(Html.DevExtreme().TagBox()
-                    .DataSource(servicioOptions)
+            columns.AddFor(m => m.IdContrato)
+                .Caption("Arrendatario")
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.WebApi()
+                        .Controller("Contrato")
+                        .LoadAction("Get")
+                        .Key("id"))
                     .ValueExpr("id")
-                    .DisplayExpr("text")
-                    .Value(new JS("cellInfo.value ? cellInfo.value.split(',') : []"))
-                    .OnInitialized("function(e) { window.servBox = e.component; }")
-                    .OnValueChanged("onServiciosChanged")
-                )
-            </text>);
+                    .DisplayExpr("arrendatario.nombres")
+                );
 
-        // Plan
-        columns.AddFor(m => m.plan)
-            .Caption("Plan Cable/Internet")
-            .CellTemplate("function(cellElement, cellInfo) { cellElement.text(cellInfo.value || 'Ninguno'); }")
-            .EditCellTemplate(@<text>
-                @(Html.DevExtreme().SelectBox()
-                    .DataSource(planOptions)
-                    .ValueExpr("id")
-                    .DisplayExpr("text")
-                    .Value(new JS("cellInfo.value || 'Ninguno'"))
-                    .OnInitialized("function(e) { window.planBox = e.component; }")
-                    .OnValueChanged("function(e){ cellInfo.setValue(e.value); }")
-                )
-            </text>);
-        */
+            columns.AddFor(m => m.emision)
+                .Caption("Fecha Emisión")
+                .DataType(GridColumnDataType.Date)
+                .Format("dd/MM/yyyy");
 
-        columns.AddFor(m => m.montoTotal)
-            .Caption("Monto Total")
-            .Format(Format.Currency)
-            .AllowEditing(false);
+            columns.AddFor(m => m.ServiciosStr)
+                .Caption("Servicios");
 
-        columns.AddFor(m => m.MontoAlquiler)
-            .Caption("Alquiler")
-            .Format(Format.Currency)
-            .AllowEditing(false);
-    })
-    .Editing(edit => edit
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-        .UseIcons(false)
-    )
-    /*.OnEditorPreparing(@<text>
-        function(e) {
-        if(e.dataField === 'plan') {
-        var servicios = (e.row.data.ServiciosStr || '').split(',');
-        var tieneCable = servicios.indexOf('Cable_Internet') !== -1;
-        e.editorOptions.disabled = !tieneCable;
-        if(!tieneCable) e.editorOptions.value = 'Ninguno';
-        }
-        }
-    </text>)*/
-    .ShowBorders(true)
-    .FilterRow(f => f.Visible(true))
-    .HeaderFilter(f => f.Visible(true))
-    .GroupPanel(p => p.Visible(true))
-    .Width("100%")
-    .Height(600)
-    )
+            /*
+            // Servicios
+            columns.AddFor(m => m.ServiciosStr)
+                .Caption("Servicios")
+                .EditCellTemp
+         * late(@<text>
+                    @(Html.DevExtreme().TagBox()
+                        .DataSource(servicioOptions)
+                        .ValueExpr("id")
+                        .DisplayExpr("text")
+                        .Value(new JS("cellInfo.value ? cellInfo.value.split(',') : []"))
+                        .OnInitialized("function(e) { window.servBox = e.component; }")
+                        .OnValueChanged("onServiciosChanged")
+                    )
+                </text>);
 
-@*@section Scripts {
-    <script>
-        function onServiciosChanged(e) {
-            var seleccion = e.value || [];
-            var tieneCable = seleccion.indexOf("Cable_Internet") !== -1;
-            if (window.planBox) {
-                planBox.option("disabled", !tieneCable);
-                if (!tieneCable) planBox.option("value", "Ninguno");
+            // Plan
+            columns.AddFor(m => m.plan)
+                .Caption("Plan Cable/Internet")
+                .CellTemplate("function(cellElement, cellInfo) { cellElement.text(cellInfo.value || 'Ninguno'); }")
+                .EditCellTemplate(@<text>
+                    @(Html.DevExtreme().SelectBox()
+                        .DataSource(planOptions)
+                        .ValueExpr("id")
+                        .DisplayExpr("text")
+                        .Value(new JS("cellInfo.value || 'Ninguno'"))
+                        .OnInitialized("function(e) { window.planBox = e.component; }")
+                        .OnValueChanged("function(e){ cellInfo.setValue(e.value); }")
+                    )
+                </text>);
+            */
+
+            columns.AddFor(m => m.MontoAlquiler)
+                            .Caption("Alquiler")
+                            .Format(Format.Currency)
+                            .AllowEditing(false);
+
+            columns.AddFor(m => m.montoTotal)
+                .Caption("Monto Total")
+                .Format(Format.Currency)
+                .AllowEditing(false);
+
+
+        })
+        .Editing(edit => edit
+            .Mode(GridEditMode.Popup)
+            .UseIcons(true)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
+        )
+        /*.OnEditorPreparing(@<text>
+            function(e) {
+            if(e.dataField === 'plan') {
+            var servicios = (e.row.data.ServiciosStr || '').split(',');
+            var tieneCable = servicios.indexOf('Cable_Internet') !== -1;
+            e.editorOptions.disabled = !tieneCable;
+            if(!tieneCable) e.editorOptions.value = 'Ninguno';
             }
-        }
-    </script>
-}*@
+            }
+        </text>)*/
+        .ShowBorders(true)
+        .FilterRow(f => f.Visible(true))
+        .HeaderFilter(f => f.Visible(true))
+        .GroupPanel(p => p.Visible(true))
+        .Width("100%")
+        .Height(600)
+        .MasterDetail(md => md
+            .Enabled(true)
+            .Template(@<text>
+                <div class="p-2">
+                    <p><strong>Detalles del Contrato:</strong></p>
+                    <div>
+                        ID: <strong><%- data.contrato.id %></strong><br />
+                        Fecha de Inicio: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaInicio), 'dd/MM/yyyy') %></strong><br />
+                        Fecha Fin: <strong><%- DevExpress.localization.formatDate(new Date(data.contrato.fechaFin), 'dd/MM/yyyy') %></strong><br />
+                        Arrendatario: <strong><%- data.contrato.arrendatario.nombres %> <%- data.contrato.arrendatario.apellidos %></strong><br />
+                        Apartamento: <strong><%- data.contrato.apartamento.numero %> - Direccion <%- data.contrato.apartamento.Direccion %></strong>
+                    </div>
+                </div>
+            </text>)
+        )
+    )
+            @*@section Scripts {
+                <script>
+                    function onServiciosChanged(e) {
+                        var seleccion = e.value || [];
+                        var tieneCable = seleccion.indexOf("Cable_Internet") !== -1;
+                        if (window.planBox) {
+                            planBox.option("disabled", !tieneCable);
+                            if (!tieneCable) planBox.option("value", "Ninguno");
+                        }
+                    }
+                </script>
+            }*@
+
+    </div>
+</div>
+

@@ -28,16 +28,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Models
         public virtual Apartamento apartamento { get; set; }
 
         /// <summary>
-        /// Obtiene o establece el ID del arrendador asociado al contrato.
-        /// </summary>
-        public int IdArrendador { get; set; }
-
-        /// <summary>
-        /// Obtiene o establece el objeto Arrendador asociado al contrato.
-        /// </summary>
-        public virtual Arrendador arrendador { get; set; }
-
-        /// <summary>
         /// Obtiene o establece el ID del arrendatario asociado al contrato.
         /// </summary>
         public int IdArrendatario { get; set; }

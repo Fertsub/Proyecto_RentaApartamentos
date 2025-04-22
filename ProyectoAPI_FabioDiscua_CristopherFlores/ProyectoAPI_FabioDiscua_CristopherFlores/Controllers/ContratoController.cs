@@ -29,8 +29,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             var query = from contrato in db.Contrato
                         join apartamento in db.Apartamento
                         on contrato.apartamento.id equals apartamento.id
-                        join arrendador in db.Arrendador
-                        on contrato.arrendador.id equals arrendador.id
                         join arrendatario in db.Arrendatario
                         on contrato.arrendatario.id equals arrendatario.id
                         where contrato.estado == true
@@ -42,7 +40,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
                             contrato.fechaFin,
                             Alquiler = apartamento.PrecioAlquiler,
                             apartamento = apartamento.Direccion,
-                            arrendador = arrendador.nombres + " " + arrendador.apellidos,
                             arrendatario = arrendatario.nombres + " " + arrendatario.apellidos
                         };
 
@@ -57,7 +54,6 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
         {
             var contratos = db.Contrato
                 .Include(a => a.apartamento)
-                .Include(a => a.arrendador)
                 .Include(a => a.arrendatario)
                 .ToList();
 
@@ -95,16 +91,14 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             }
 
             Apartamento apartamentoExistente = db.Apartamento.Find(contrato.IdApartamento);
-            Arrendador arrendadorExistente = db.Arrendador.Find(contrato.IdArrendador);
             Arrendatario arrendatarioExistente = db.Arrendatario.Find(contrato.IdArrendatario);
 
-            if (apartamentoExistente == null || arrendadorExistente == null || arrendatarioExistente == null)
+            if (apartamentoExistente == null ||  arrendatarioExistente == null)
             {
                 return BadRequest("Apartamento, Arrendador o Arrendatario no encontrado.");
             }
 
             contrato.apartamento = apartamentoExistente;
-            contrato.arrendador = arrendadorExistente;
             contrato.arrendatario = arrendatarioExistente;
 
             db.Contrato.Add(contrato);
@@ -131,10 +125,9 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             }
 
             Apartamento apartamentoExistente = db.Apartamento.Find(contratoModificado.IdApartamento);
-            Arrendador arrendadorExistente = db.Arrendador.Find(contratoModificado.IdArrendador);
             Arrendatario arrendatarioExistente = db.Arrendatario.Find(contratoModificado.IdArrendatario);
 
-            if (apartamentoExistente == null || arrendadorExistente == null || arrendatarioExistente == null)
+            if (apartamentoExistente == null || arrendatarioExistente == null)
             {
                 return NotFound();
             }
@@ -143,10 +136,8 @@ namespace ProyectoAPI_FabioDiscua_CristopherFlores.Controllers
             contratoExistente.fechaFin = contratoModificado.fechaFin;
             contratoExistente.estado = contratoModificado.estado;
             contratoExistente.IdApartamento = contratoModificado.IdApartamento;
-            contratoExistente.IdArrendador = contratoModificado.IdArrendador;
             contratoExistente.IdArrendatario = contratoModificado.IdArrendatario;
             contratoExistente.apartamento = apartamentoExistente;
-            contratoExistente.arrendador = arrendadorExistente;
             contratoExistente.arrendatario = arrendatarioExistente;
             contratoExistente.Alquiler = apartamentoExistente.PrecioAlquiler;
 

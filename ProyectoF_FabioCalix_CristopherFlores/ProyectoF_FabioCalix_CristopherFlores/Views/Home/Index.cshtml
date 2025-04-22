@@ -1,41 +1,105 @@
 @using ProyectoF_FabioCalix_CristopherFlores.Models
-
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ResiControl - Dashboard";
+}
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(135deg, #f7f9fc 0%, #e2e6ef 100%);
+        }
+        .dashboard-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-icon {
+            font-size: 3.5rem;
+            margin-bottom: .75rem;
+        }
+    </style>
 }
 
-<h2>Apartamento</h2>
+<div class="container mt-5">
+    <h1 class="text-center text-secondary mb-1">
+        <i class="dx-icon dx-icon-home dashboard-icon"></i>
+        ResiControl
+    </h1>
+    <p class="text-center text-muted mb-5">Panel de Gestión de Apartamentos y Servicios</p>
 
-@(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Apartamento>()
-    .DataSource(ds => ds.WebApi()
-        .Controller("Apartamento")
-        .LoadAction("Get")
-        .InsertAction("Post")
-        .UpdateAction("Put")
-        .DeleteAction("Delete")
-        .Key("id")
-    )
-    .RemoteOperations(true)
-    .Columns(columns => {
+    <div class="row g-4">
 
-        columns.AddFor(m => m.id);
+        <div class="col-sm-6 col-lg-4">
+            <div class="card dashboard-card bg-white border-0 shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <i class="dx-icon dx-icon-building dashboard-icon text-primary"></i>
+                    <h5 class="card-title">Inmuebles</h5>
+                    <p class="card-text text-muted">Gestiona apartamentos y edificios.</p>
 
-        columns.AddFor(m => m.Direccion);
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <a href="@Url.Action("Apartamento","Home")" class="btn btn-sm btn-outline-primary">
+                            <i class="dx-icon dx-icon-home me-1"></i> Apartamentos
+                        </a>
+                        <a href="@Url.Action("Edificio","Home")" class="btn btn-sm btn-outline-secondary">
+                            <i class="dx-icon dx-icon-map me-1"></i> Edificios
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        columns.AddFor(m => m.NumHabitaciones);
+        <div class="col-sm-6 col-lg-4">
+            <a href="@Url.Action("Contrato","Home")" class="text-decoration-none">
+                <div class="card dashboard-card bg-white border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="dx-icon dx-icon-card dashboard-icon text-info"></i>
+                        <h5 class="card-title">Contratos</h5>
+                        <p class="card-text text-muted">Revisa los contratos vigentes.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-        columns.AddFor(m => m.PrecioAlquiler);
+        <div class="col-sm-6 col-lg-4">
+            <div class="card dashboard-card bg-white border-0 shadow-sm h-100 text-center">
+                <div class="card-body">
+                    <i class="dx-icon dx-icon-money dashboard-icon text-warning"></i>
+                    <h5 class="card-title">Facturas & Pagos</h5>
+                    <p class="card-text text-muted">Gestiona facturas y pagos.</p>
 
-        columns.AddFor(m => m.Disponible);
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <a href="@Url.Action("Factura","Home")" class="btn btn-sm btn-outline-warning">Facturas</a>
+                        <a href="@Url.Action("Pago","Home")" class="btn btn-sm btn-outline-success">Pagos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        columns.AddFor(m => m.IdArrendador);
+        <div class="col-sm-6 col-lg-6">
+            <a href="@Url.Action("Queja_Solicitud","Home")" class="text-decoration-none">
+                <div class="card dashboard-card bg-white border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="dx-icon dx-icon-comment dashboard-icon text-danger"></i>
+                        <h5 class="card-title">Quejas / Solicitudes</h5>
+                        <p class="card-text text-muted">Atiende quejas y solicitudes.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-        columns.AddFor(m => m.IdEdificio);
-    })
-    .Editing(e => e
-        .Mode(GridEditMode.Popup)
-        .AllowAdding(true)
-        .AllowUpdating(true)
-        .AllowDeleting(true)
-    )
-)
+        <div class="col-sm-6 col-lg-6">
+            <a href="@Url.Action("Solicitud_Mantenimiento","Home")" class="text-decoration-none">
+                <div class="card dashboard-card bg-white border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <i class="dx-icon dx-icon-tools dashboard-icon text-secondary"></i>
+                        <h5 class="card-title">Mantenimiento</h5>
+                        <p class="card-text text-muted">Gestiona solicitudes de mantenimiento.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
