@@ -22,7 +22,7 @@ export default function App(): JSX.Element | null {
   if (!fontsLoaded) return null;
 
   return (
-    <View className="flex-1" onLayout={onLayoutRootView}>
+      <View className="flex-1" onLayout={onLayoutRootView}>
       <AppNavigator />
     </View>
   );

@@ -1,14 +1,17 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./App.{js,jsx,ts,tsx}",
-    "./src/**/*.{js,jsx,ts,tsx}", // por si luego tienes componentes ahí
+    "./screens/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+    "./navigation/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins-Regular'],
-        poppinsBold: ['Poppins-Bold'],
+        poppins: ["Poppins-Regular"],
+        poppinsBold: ["Poppins-Bold"],
       },
     },
   },
