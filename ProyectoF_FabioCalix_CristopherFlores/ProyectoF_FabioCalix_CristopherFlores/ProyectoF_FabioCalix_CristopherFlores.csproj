@@ -509,11 +509,11 @@
     <Content Include="Views\Home\Edificio.cshtml" />
     <Content Include="Views\Home\Historial_Mantenimiento.cshtml" />
     <Content Include="Views\Home\Queja_Solicitud.cshtml" />
-    <Content Include="Views\Home\Contrato.cshtml" />
     <Content Include="Views\Home\Pago.cshtml" />
     <Content Include="Views\Home\Garante.cshtml" />
     <Content Include="Views\Home\Factura.cshtml" />
     <Content Include="Views\Home\Solicitud_Mantenimiento.cshtml" />
+    <Content Include="Views\Home\Contrato.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

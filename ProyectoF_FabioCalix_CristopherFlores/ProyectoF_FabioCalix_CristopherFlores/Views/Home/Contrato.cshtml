@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <div class="card shadow-sm border-0 mt-4">
     <div class="card-header bg-dark text-white">
         <h3 class="mb-0">Contratos</h3>
@@ -10,53 +11,62 @@
     <div class="card-body bg-light">
 
         @(Html.DevExtreme().DataGrid<ProyectoF_FabioCalix_CristopherFlores.Models.Contrato>()
-       .DataSource(ds => ds.WebApi()
-           .Controller("Pago")
-           .LoadAction("Get")
-           .InsertAction("Post")
-           .UpdateAction("Put")
-           .DeleteAction("Delete")
-           .Key("id")
-       )
-       .RemoteOperations(true)
-       .Columns(columns => {
+        .DataSource(ds => ds.WebApi()
+            .Controller("Contrato")
+            .LoadAction("Get")
+            .InsertAction("Post")
+            .UpdateAction("Put")
+            .DeleteAction("Delete")
+            .Key("id")
+        )
+        .RemoteOperations(true)
+        .Columns(columns => {
 
-           columns.AddFor(m => m.id);
+            columns.AddFor(m => m.id);
 
-           columns.AddFor(m => m.IdApartamento)
-               .Lookup(lookup => lookup
-                   .DataSource(ds => ds.WebApi().Controller("Apartamento").LoadAction("Get"))
-                   .DisplayExpr("Direccion")
-                   .ValueExpr("id")
-               )
-               .Caption("Apartamento");
+            columns.AddFor(m => m.IdApartamento)
+                .Caption("Apartamento")
+                .Lookup(lookup => lookup
+                    .DataSource(d => d.WebApi()
+                        .Controller("apartamento")
+                        .LoadAction("Get")
+                        .Key("id"))
+                    .ValueExpr("id")
+                    .DisplayExpr("Direccion")
+                );
 
-           columns.AddFor(m => m.IdArrendatario)
-               .Lookup(lookup => lookup
-                   .DataSource(ds => ds.WebApi().Controller("Arrendatario").LoadAction("Get"))
-                   .DisplayExpr("nombres")
-                   .ValueExpr("id")
-               )
-               .Caption("Arrendatario");
+            columns.AddFor(m => m.IdArrendatario)
+             .Caption("Arrendatario")
+             .Lookup(lookup => lookup
+                 .DataSource(d => d.WebApi()
+                     .Controller("arrendatario")
+                     .LoadAction("Get")
+                     .Key("id"))
+                 .ValueExpr("id")
+                 .DisplayExpr("nombres")
+             );
 
-           columns.AddFor(m => m.fechaInicio)
-               .DataType(GridColumnDataType.Date);
+            columns.AddFor(m => m.fechaInicio)
+                    .DataType(GridColumnDataType.Date)
+                    .Format("dd/MM/yyyy"); ;
 
-           columns.AddFor(m => m.fechaFin)
-               .DataType(GridColumnDataType.Date);
+            columns.AddFor(m => m.fechaFin)
+                    .DataType(GridColumnDataType.Date)
+                    .Format("dd/MM/yyyy"); ;
 
-           columns.AddFor(m => m.Alquiler)
-               .Format(Format.Currency);
+            columns.AddFor(m => m.Alquiler)
+                    .Format(Format.Currency)
+                    .AllowEditing(false); ;
 
-           columns.AddFor(m => m.estado)
-               .Caption("Estado")
-               .CellTemplate(
-                   new JS(@"function(container, options) {
-                        var text = options.value === true ? 'Inactivo' : 'Activo';
-                        container.text(text);
-                    }")
-               );
-       })
+            columns.AddFor(m => m.estado)
+                .Caption("Estado")
+                .CellTemplate(
+                    new JS(@"function(container, options) {
+                         var text = options.value === true ? 'Activo' : 'Inactivo';
+                         container.text(text);
+                     }")
+                );
+        })
         .FilterRow(f => f.Visible(true))
         .HeaderFilter(f => f.Visible(true))
         .GroupPanel(p => p.Visible(true))
@@ -65,26 +75,11 @@
         .Height(600)
         .ShowBorders(true)
         .Editing(e => e
-           .Mode(GridEditMode.Popup)
-           .UseIcons(true)
-           .AllowAdding(true)
-           .AllowUpdating(true)
-           .AllowDeleting(true)
-       ).MasterDetail(md => md
-            .Enabled(true)
-            .Template(@<text>
-                <div class="p-2">
-                    <p><strong>Detalles del Apartamento:</strong></p>
-                    <div>
-                        Número de Habitaciones: <strong><%- data.apartamento.numHabitaciones %></strong><br />
-                        Dirección: <strong><%- data.apartamento.direccion %></strong><br />
-                        Arrendatario: <strong><%- data.arrendatario.nombres %> <%- data.arrendatario.apellidos %></strong>
-                    </div>
-                </div>
-            </text>)
+            .AllowAdding(true)
+            .AllowUpdating(true)
+            .AllowDeleting(true)
         )
     )
-        </script>
 
     </div>
 </div>
