@@ -22,7 +22,7 @@
         .RemoteOperations(true)
         .Columns(columns => {
 
-            columns.AddFor(m => m.id);
+            columns.AddFor(m => m.id).Visible(false);
 
             columns.AddFor(m => m.IdApartamento)
                 .Caption("Apartamento")
@@ -48,15 +48,15 @@
 
             columns.AddFor(m => m.fechaInicio)
                     .DataType(GridColumnDataType.Date)
-                    .Format("dd/MM/yyyy"); ;
+                    .Format("dd/MM/yyyy"); 
 
             columns.AddFor(m => m.fechaFin)
                     .DataType(GridColumnDataType.Date)
-                    .Format("dd/MM/yyyy"); ;
+                    .Format("dd/MM/yyyy");
 
             columns.AddFor(m => m.Alquiler)
                     .Format(Format.Currency)
-                    .AllowEditing(false); ;
+                    .AllowEditing(false); 
 
             columns.AddFor(m => m.estado)
                 .Caption("Estado")
@@ -76,6 +76,7 @@
         .ShowBorders(true)
         .Editing(e => e
             .Mode(GridEditMode.Popup)
+            .UseIcons(true)
             .AllowAdding(true)
             .AllowUpdating(true)
             .AllowDeleting(true)

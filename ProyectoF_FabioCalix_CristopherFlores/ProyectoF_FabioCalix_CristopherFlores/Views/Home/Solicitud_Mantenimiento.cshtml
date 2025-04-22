@@ -32,7 +32,7 @@
         .RemoteOperations(true)
         .Columns(columns => {
 
-            columns.AddFor(m => m.id);
+            columns.AddFor(m => m.id).Visible(false);
 
             columns.AddFor(m => m.IdApartamento)
             .Caption("Apartamento")
@@ -43,7 +43,7 @@
                     .Key("id"))
                 .ValueExpr("id")
                 .DisplayExpr("Direccion")
-            );
+            ).AllowEditing(false);
 
             columns.AddFor(m => m.Descripcion)
                 .Caption("Descripción")
@@ -57,7 +57,7 @@
                         .text(text)
                         .appendTo(container);
                 }")
-                );
+                ).AllowEditing(false);
 
             columns.AddFor(m => m.IdEmpleado)
                .Caption("Empleado de Mantenimiento")
@@ -68,11 +68,11 @@
                        .Key("id"))
                    .ValueExpr("id")
                    .DisplayExpr("nombres")
-               );
+               ).AllowEditing(false);
 
             columns.AddFor(m => m.Costo)
                 .Format(Format.Currency)
-                .Caption("Monto");
+                .Caption("Monto").AllowEditing(false);
 
             columns.AddFor(m => m.FechaRealizacion)
                 .Caption("Fecha de Realización")
@@ -98,7 +98,6 @@
        .Editing(e => e
            .Mode(GridEditMode.Popup)
            .UseIcons(true)
-           .AllowAdding(true)
            .AllowUpdating(true)
            .AllowDeleting(true)
        )
