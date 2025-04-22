@@ -59,6 +59,17 @@
                 .Caption("Fecha de Emisión")
                 .DataType(GridColumnDataType.Date);
 
+            columns.AddFor(m => m.IdArrendatario)
+                 .Caption("Arrendatario")
+                 .Lookup(lookup => lookup
+                     .DataSource(d => d.WebApi()
+                         .Controller("arrendatario")
+                         .LoadAction("Get")
+                         .Key("id"))
+                     .ValueExpr("id")
+                     .DisplayExpr("nombres")
+                 );
+
         })
         .Editing(e => e
             .Mode(GridEditMode.Popup)
